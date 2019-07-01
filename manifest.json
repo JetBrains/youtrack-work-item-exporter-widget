@@ -1,0 +1,27 @@
+{
+  "key": "youtrack-work-items-export",
+  "version": "1.0.0",
+  "name": "Work item exporter",
+  "description": "Exports work items in CSV and Excel format.",
+  "applicationName": "YouTrack",
+  "author": "YouTrack Team",
+  "dependencies": {
+    "YouTrack": ">=2019.1",
+    "Hub": ">3.0"
+  },
+  "products": {
+    "YouTrack": ">=2019.1",
+    "Hub": ">3.0"
+  },
+  "capabilities": {
+    "popups": true,
+    "topNavigation": true
+  },
+  "view": {
+    "defaultWidth": 1,
+    "defaultHeight": 1,
+    "fadeOut": false
+  }
+
+}
+
