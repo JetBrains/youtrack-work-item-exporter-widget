@@ -34,7 +34,6 @@ class WorkItemsEditForm extends React.Component {
     search: PropTypes.string,
     context: PropTypes.object,
     title: PropTypes.string,
-    refreshPeriod: PropTypes.number,
     onSubmit: PropTypes.func,
     onCancel: PropTypes.func,
     dashboardApi: PropTypes.object,
@@ -51,7 +50,6 @@ class WorkItemsEditForm extends React.Component {
       search: props.search || '',
       context: props.context,
       title: props.title || '',
-      refreshPeriod: props.refreshPeriod || 0,
       selectedYouTrack,
       youTracks: [selectedYouTrack],
       filtersType: WorkItemsEditForm.FILTERS_TYPES.PROJECTS
@@ -132,10 +130,10 @@ class WorkItemsEditForm extends React.Component {
 
   submitForm = async () => {
     const {
-      search, context, title, refreshPeriod, selectedYouTrack
+      search, context, title, selectedYouTrack
     } = this.state;
     await this.props.onSubmit({
-      search: search || '', title, context, refreshPeriod, selectedYouTrack
+      search: search || '', title, context, selectedYouTrack
     });
   };
 
@@ -165,9 +163,6 @@ class WorkItemsEditForm extends React.Component {
   onQueryAssistInputChange = queryAssistModel =>
     this.changeSearch(queryAssistModel.query);
 
-  onChangeRefreshPeriod = newValue =>
-    this.setState({refreshPeriod: newValue});
-
   getAppendToQueryCallback = (filterType, filter) =>
     () => this.appendToSearch(filterType, filter);
 
@@ -175,7 +170,7 @@ class WorkItemsEditForm extends React.Component {
     return (
       <div
         key={`filter-${filter.id}`}
-        className="issues-list-widget__filter"
+        className="work-items-widget__filter"
       >
         <Link
           pseudo
@@ -320,19 +315,6 @@ class WorkItemsEditForm extends React.Component {
     );
   }
 
-  renderRefreshPeriod() {
-    if (this.state.isLoading || this.state.errorMessage) {
-      return '';
-    }
-
-    return (
-      <RefreshPeriod
-        seconds={this.state.refreshPeriod}
-        onChange={this.onChangeRefreshPeriod}
-      />
-    );
-  }
-
   render() {
     const {
       youTracks,
@@ -354,7 +336,6 @@ class WorkItemsEditForm extends React.Component {
         warning={errorMessage}
         isInvalid={!!errorMessage}
         isLoading={this.state.isLoading}
-        panelControls={this.renderRefreshPeriod()}
         onSave={this.submitForm}
         onCancel={this.props.onCancel}
       >

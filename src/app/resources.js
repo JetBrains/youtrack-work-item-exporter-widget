@@ -1,13 +1,18 @@
 const QUERY_ASSIST_FIELDS = 'query,caret,styleRanges(start,length,style),suggestions(options,prefix,option,suffix,description,matchingStart,matchingEnd,caret,completionStart,completionEnd,group,icon)';
 const WATCH_FOLDERS_FIELDS = 'id,$type,name,query,shortName';
 
+export function contentType(csv) {
+  return csv ? 'text/csv' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+}
+
 // eslint-disable-next-line complexity
 export async function loadWorkItems(fetchYouTrack, query, context, csv) {
   return await fetchYouTrack(
-    `api/workItems?$top=-1`, {
+    `api/workItems/export?$top=-1`, {
       method: 'POST',
+      responseType: 'blob',
       headers: {
-        'Accept': csv ? 'text/csv' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        'Accept': contentType(csv )
       },
       body: {
         query: query,

@@ -11,7 +11,7 @@ import WorkItemsWidget from './work-items-widget';
 import TRANSLATIONS from './translations';
 
 const CONFIG_FIELDS = [
-  'search', 'context', 'title', 'refreshPeriod', 'youTrack'
+  'search', 'context', 'title', 'youTrack'
 ];
 
 DashboardAddons.registerWidget(async (dashboardApi, registerWidgetApi) => {

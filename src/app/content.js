@@ -4,14 +4,16 @@ import LoaderInline from '@jetbrains/ring-ui/components/loader-inline/loader-inl
 
 import './style/work-items-widget.scss';
 import {Button} from "@jetbrains/ring-ui";
-import {loadWorkItems} from "./resources";
+import {contentType, loadWorkItems} from "./resources";
 
 class Content extends React.Component {
 
   static propTypes = {
-    youTrack: PropTypes.object,
+    dashboardApi: PropTypes.object,
+    youTrackId: PropTypes.string,
+
     context: PropTypes.object,
-    query: PropTypes.string,
+    search: PropTypes.string,
 
     start: PropTypes.number,
     end: PropTypes.number,
@@ -22,6 +24,11 @@ class Content extends React.Component {
     editable: PropTypes.bool
   };
 
+  fetchYouTrack = async (url, params) => {
+    const {dashboardApi, youTrackId} = this.props;
+    return await dashboardApi.fetch(youTrackId, url, params);
+  };
+
   constructor(props) {
     super(props);
   }
@@ -30,22 +37,48 @@ class Content extends React.Component {
     return <LoaderInline/>;
   }
 
-  fetchYouTrack = async (url, params) => {
-    const {dashboardApi} = this.props;
-    const {youTrack} = this.state;
-    return await dashboardApi.fetch(youTrack.id, url, params);
-  };
-
   renderWidgetBody() {
     const {
       context,
-      query,
+      search,
 
       start,
       end
     } = this.props;
 
-    const onExport = (csv) => loadWorkItems(this.fetchYouTrack, context, query, csv);
+    const onExport = (csv) => async () => {
+      function saveBlob(response, fileName) {
+        const blob = response.data;
+        if (
+          window.navigator &&
+          window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob, fileName);
+          return;
+        }
+
+        const binaryData = [];
+        binaryData.push(blob);
+        const blobURL = window.URL.createObjectURL(new Blob(binaryData, {type: contentType(csv)}));
+        // const blobURL = window.URL.createObjectURL(blob);
+
+        let element = document;
+        const anchor = document.createElement('a');
+        anchor.download = fileName;
+        anchor.href = blobURL;
+
+        // append to the document to make URL works in Firefox
+        anchor.style.display = 'none';
+        element.body.appendChild(anchor);
+        anchor.onclick = () => anchor.parentNode.removeChild(anchor);
+
+        anchor.click();
+
+        setTimeout(() => window.URL.revokeObjectURL(blobURL), 0, false);
+      }
+
+      const response = await loadWorkItems(this.fetchYouTrack, search, context, csv);
+      saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
+    };
 
     return (
       <div className="work-items-widget">

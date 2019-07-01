@@ -8,18 +8,11 @@ import WorkItemsEditForm from './work-items-edit-form';
 
 import './style/work-items-widget.scss';
 import Content from './content';
+import LoaderInline from "@jetbrains/ring-ui/components/loader-inline/loader-inline";
 
 class WorkItemsWidget extends React.Component {
 
   static DEFAULT_REFRESH_PERIOD = 240; // eslint-disable-line no-magic-numbers
-
-  static digitToUnicodeSuperScriptDigit = digitSymbol => {
-    const unicodeSuperscriptDigits = [
-      0x2070, 0x00B9, 0x00B2, 0x00B3, 0x2074, // eslint-disable-line no-magic-numbers
-      0x2075, 0x2076, 0x2077, 0x2078, 0x2079 // eslint-disable-line no-magic-numbers
-    ];
-    return String.fromCharCode(unicodeSuperscriptDigits[Number(digitSymbol)]);
-  };
 
   static getFullSearchPresentation = (context, search) => [
     context && context.name && `#{${context.name}}`, search
@@ -43,7 +36,7 @@ class WorkItemsWidget extends React.Component {
   static youTrackServiceNeedsUpdate = service => !service.name;
 
   static getDefaultWidgetTitle = () =>
-    i18n('Issues List');
+    i18n('Work items');
 
   static getWidgetTitle = (search, context, title) => {
     return title || WorkItemsWidget.getFullSearchPresentation(context, search);
@@ -112,79 +105,51 @@ class WorkItemsWidget extends React.Component {
   async initializeExistingWidget(youTrackService) {
     const search = this.props.configWrapper.getFieldValue('search');
     const context = this.props.configWrapper.getFieldValue('context');
-    const refreshPeriod =
-      this.props.configWrapper.getFieldValue('refreshPeriod');
+
     const title = this.props.configWrapper.getFieldValue('title');
 
     this.setState({
       title,
       search: search || '',
-      context,
-      refreshPeriod: refreshPeriod || WorkItemsWidget.DEFAULT_REFRESH_PERIOD
+      context
     });
 
     if (youTrackService && youTrackService.id) {
-      this.setYouTrack(youTrackService);
+      this.setYouTrack(youTrackService, () => this.setState({isConfiguring: false}));
     }
   }
 
-  setYouTrack(youTrackService) {
+  setYouTrack(youTrackService, callback) {
     const {homeUrl} = youTrackService;
 
     this.setState({
       youTrack: {
         id: youTrackService.id, homeUrl
-      }
-    });
+      },
+      isConfiguring: false
+    }, callback);
 
-    if (WorkItemsWidget.youTrackServiceNeedsUpdate(youTrackService)) {
-      const {dashboardApi} = this.props;
-      ServiceResource.getYouTrackService(
-        dashboardApi.fetchHub.bind(dashboardApi),
-        youTrackService.id
-      ).then(
-        updatedYouTrackService => {
-          const shouldReSetYouTrack = updatedYouTrackService &&
-            !WorkItemsWidget.youTrackServiceNeedsUpdate(
-              updatedYouTrackService
-            ) && updatedYouTrackService.homeUrl !== homeUrl;
-          if (shouldReSetYouTrack) {
-            this.setYouTrack(updatedYouTrackService);
-            if (!this.state.isConfiguring && this.props.editable) {
-              this.props.configWrapper.update({
-                youTrack: {
-                  id: updatedYouTrackService.id,
-                  homeUrl: updatedYouTrackService.homeUrl
-                }
-              });
-            }
-          }
-        }
-      );
-    }
   }
 
   submitConfiguration = async formParameters => {
     const {
-      search, title, context, refreshPeriod, selectedYouTrack
+      search, title, context, selectedYouTrack
     } = formParameters;
     this.setYouTrack(
       selectedYouTrack, async () => {
         this.setState(
-          {search: search || '', context, title, refreshPeriod},
+          {search: search || '', context, title},
           async () => {
             await this.props.configWrapper.replace({
               search,
               context,
               title,
-              refreshPeriod,
               youTrack: {
-                id: selectedYouTrack.id,
-                homeUrl: selectedYouTrack.homeUrl
+                id: selectedYouTrack.id
               }
             });
             this.setState(
-              {isConfiguring: false, fromCache: false}
+              {isConfiguring: false}
             );
           }
         );
@@ -217,7 +182,6 @@ class WorkItemsWidget extends React.Component {
         search={this.state.search}
         context={this.state.context}
         title={this.state.title}
-        refreshPeriod={this.state.refreshPeriod}
         onSubmit={this.submitConfiguration}
         onCancel={this.cancelConfiguration}
         dashboardApi={this.props.dashboardApi}
@@ -228,22 +192,22 @@ class WorkItemsWidget extends React.Component {
 
   renderContent = () => {
     const {
-      issues,
-      isLoading,
-      fromCache,
-      isLoadDataError,
-      dateFormats,
-      issuesCount,
-      isNextPageLoading,
-      refreshPeriod,
-      youTrack
+      isConfiguring,
+      youTrack,
+      context,
+      search
     } = this.state;
-
+    if (isConfiguring || !youTrack) {
+      return <LoaderInline/>;
+    }
     return (
       <Content
-        youTrack={youTrack}
+        dashboardApi={this.props.dashboardApi}
+        youTrackId={youTrack.id}
         onEdit={this.editSearchQuery}
         editable={this.props.editable}
+        query={search}
+        context={context}
       />
     );
   };
@@ -254,8 +218,7 @@ class WorkItemsWidget extends React.Component {
       isConfiguring,
       search,
       context,
-      title,
-      youTrack
+      title
     } = this.state;
 
     const widgetTitle = isConfiguring
