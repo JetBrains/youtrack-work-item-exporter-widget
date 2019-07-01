@@ -12,7 +12,7 @@ export async function loadWorkItems(fetchYouTrack, query, context, csv) {
       method: 'POST',
       responseType: 'blob',
       headers: {
-        'Accept': contentType(csv )
+        'Accept': contentType(csv)
       },
       body: {
         query: query,

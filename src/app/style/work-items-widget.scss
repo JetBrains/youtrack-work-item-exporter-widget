@@ -30,7 +30,11 @@
     vertical-align: top;
   }
 
-  &_button{
+  &_button-group {
+    width: 100%;
+  }
+
+  &_button {
     width: 50%;
   }
 }

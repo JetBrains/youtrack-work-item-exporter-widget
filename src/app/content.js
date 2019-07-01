@@ -5,6 +5,7 @@ import LoaderInline from '@jetbrains/ring-ui/components/loader-inline/loader-inl
 import './style/work-items-widget.scss';
 import {Button} from "@jetbrains/ring-ui";
 import {contentType, loadWorkItems} from "./resources";
+import ButtonGroup from "@jetbrains/ring-ui/components/button-group/button-group";
 
 class Content extends React.Component {
 
@@ -82,8 +83,10 @@ class Content extends React.Component {
 
     return (
       <div className="work-items-widget">
-        <Button className="work-items-widget_button" onClick={onExport(true)}>CSV</Button>
-        <Button className="work-items-widget_button" onClick={onExport(false)}>EXCEL</Button>
+        <ButtonGroup className="work-items-widget_button-group">
+          <Button className="work-items-widget_button" onClick={onExport(true)}>CSV</Button>
+          <Button className="work-items-widget_button" onClick={onExport(false)}>EXCEL</Button>
+        </ButtonGroup>
       </div>
     );
   }
