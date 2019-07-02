@@ -23,10 +23,6 @@ class WorkItemsFilter {
     }
   }
 
-  cleanup(allWorkTypes) {
-
-  }
-
   async sync(props) {
     await props.configWrapper.update({filter: this.toRestFilter()});
   }

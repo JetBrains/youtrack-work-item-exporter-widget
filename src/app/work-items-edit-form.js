@@ -136,13 +136,18 @@ class WorkItemsEditForm extends React.Component {
 
     const all = (allWorkTypes || []).concat(WorkItemsEditForm.WITHOUT_TYPE).map(toSelectItem);
 
+    let selectedWorkTypes = filter.workTypes;
+    if (filter.withoutWorkType) {
+      selectedWorkTypes = selectedWorkTypes.concat(WorkItemsEditForm.WITHOUT_TYPE)
+    }
+
     return (
       <div>
         <Select className="work-items-widget__form-select"
                 size={InputSize.S}
                 data={all}
                 multiple={true}
-                selected={filter.workTypes.map(toSelectItem)}
+                selected={selectedWorkTypes.map(toSelectItem)}
                 onChange={this.changeWorkTypes}
                 loading={!allWorkTypes}
                 label={i18n('All work types')}>
