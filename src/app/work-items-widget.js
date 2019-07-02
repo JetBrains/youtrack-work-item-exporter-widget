@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {i18n} from 'hub-dashboard-addons/dist/localization';
-import ConfigurableWidget from '@jetbrains/hub-widget-ui/dist/configurable-widget';
 
 import ServiceResource from './components/service-resource';
 import WorkItemsEditForm from './work-items-edit-form';
 
 import './style/work-items-widget.scss';
-import Content from './content';
 import LoaderInline from "@jetbrains/ring-ui/components/loader-inline/loader-inline";
+import {Button} from "@jetbrains/ring-ui";
+import {contentType, loadWorkItems} from "./resources";
+import filter from "./work-items-filter";
 
+import {observer} from 'mobx-react';
+
+@observer
 class WorkItemsWidget extends React.Component {
-
-  static DEFAULT_REFRESH_PERIOD = 240; // eslint-disable-line no-magic-numbers
-
-  static getFullSearchPresentation = (context, search) => [
-    context && context.name && `#{${context.name}}`, search
-  ].filter(str => !!str).join(' ') || `#${i18n('issues')}`;
 
   static getDefaultYouTrackService =
     async (dashboardApi, predefinedYouTrack) => {
@@ -33,15 +30,6 @@ class WorkItemsWidget extends React.Component {
       }
     };
 
-  static youTrackServiceNeedsUpdate = service => !service.name;
-
-  static getDefaultWidgetTitle = () =>
-    i18n('Work items');
-
-  static getWidgetTitle = (search, context, title) => {
-    return title || WorkItemsWidget.getFullSearchPresentation(context, search);
-  };
-
   static propTypes = {
     dashboardApi: PropTypes.object,
     configWrapper: PropTypes.object,
@@ -55,7 +43,6 @@ class WorkItemsWidget extends React.Component {
 
     this.state = {
       isConfiguring: false
-      // isLoading: true
     };
 
     registerWidgetApi({
@@ -63,10 +50,6 @@ class WorkItemsWidget extends React.Component {
         isConfiguring: true,
         // isLoading: false,
         isLoadDataError: false
-      }),
-      getExternalWidgetOptions: () => ({
-        authClientId:
-          (this.props.configWrapper.getFieldValue('youTrack') || {}).id
       })
     });
   }
@@ -76,13 +59,14 @@ class WorkItemsWidget extends React.Component {
   }
 
   initialize = async dashboardApi => {
-    // this.setState({isLoading: true});
     await this.props.configWrapper.init();
+    filter.restore(this.props);
 
-    const youTrackService =
-      await WorkItemsWidget.getDefaultYouTrackService(
-        dashboardApi, this.props.configWrapper.getFieldValue('youTrack')
-      );
+    const youTrackService = await WorkItemsWidget.getDefaultYouTrackService(
+      dashboardApi, {
+        id: filter.youTrackId
+      }
+    );
 
     if (this.props.configWrapper.isNewConfig()) {
       this.initializeNewWidget(youTrackService);
@@ -91,71 +75,73 @@ class WorkItemsWidget extends React.Component {
     }
   };
 
-  initializeNewWidget(youTrackService) {
+  async initializeNewWidget(youTrackService) {
     if (youTrackService && youTrackService.id) {
-      this.setState({
-        isConfiguring: true,
-        youTrack: youTrackService
-        // isLoading: false
-      });
+      this.setState({isConfiguring: true});
+      filter.youTrackId = youTrackService.id;
+      await filter.sync(this.props);
     }
-    // this.setState({isLoadDataError: true, isLoading: false});
+
   }
 
   async initializeExistingWidget(youTrackService) {
-    const search = this.props.configWrapper.getFieldValue('search');
-    const context = this.props.configWrapper.getFieldValue('context');
-
-    const title = this.props.configWrapper.getFieldValue('title');
-
-    this.setState({
-      title,
-      search: search || '',
-      context
-    });
+    await filter.restore(this.props);
 
     if (youTrackService && youTrackService.id) {
-      this.setYouTrack(youTrackService, () => this.setState({isConfiguring: false}));
+      filter.youTrackId = youTrackService.id;
+      filter.sync(this.props);
+      this.setState({isConfiguring: false});
     }
   }
 
-  setYouTrack(youTrackService, callback) {
-    const {homeUrl} = youTrackService;
+  submitConfiguration = async () => {
+    filter.sync(this.props);
+    this.setState({isConfiguring: false});
+  };
 
-    this.setState({
-      youTrack: {
-        id: youTrackService.id, homeUrl
-      },
-      isConfiguring: false
-    }, callback);
+  fetchYouTrack = async (url, params) => {
+    const {dashboardApi} = this.props;
+    return await dashboardApi.fetch(filter.youTrackId, url, params);
+  };
+
+  onExport(csv) {
+
+    return async () => {
+      function saveBlob(response, fileName) {
+        const blob = response.data;
+        if (
+          window.navigator &&
+          window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob, fileName);
+          return;
+        }
+
+        const binaryData = [];
+        binaryData.push(blob);
+        const blobURL = window.URL.createObjectURL(new Blob(binaryData, {type: contentType(csv)}));
+        // const blobURL = window.URL.createObjectURL(blob);
+
+        let element = document;
+        const anchor = document.createElement('a');
+        anchor.download = fileName;
+        anchor.href = blobURL;
+
+        // append to the document to make URL works in Firefox
+        anchor.style.display = 'none';
+        element.body.appendChild(anchor);
+        anchor.onclick = () => anchor.parentNode.removeChild(anchor);
+
+        anchor.click();
+
+        setTimeout(() => window.URL.revokeObjectURL(blobURL), 0, false);
+      }
+
+      const response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
+      saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
+    };
 
   }
 
-  submitConfiguration = async formParameters => {
-    const {
-      search, title, context, selectedYouTrack
-    } = formParameters;
-    this.setYouTrack(
-      selectedYouTrack, async () => {
-        this.setState(
-          {search: search || '', context, title},
-          async () => {
-            await this.props.configWrapper.replace({
-              search,
-              context,
-              title,
-              youTrack: {
-                id: selectedYouTrack.id
-              }
-            });
-            this.setState(
-              {isConfiguring: false}
-            );
-          }
-        );
-      }
-    );
-  };
 
   cancelConfiguration = async () => {
     if (this.props.configWrapper.isNewConfig()) {
@@ -167,48 +153,25 @@ class WorkItemsWidget extends React.Component {
     }
   };
 
-  fetchYouTrack = async (url, params) => {
-    const {dashboardApi} = this.props;
-    const {youTrack} = this.state;
-    return await dashboardApi.fetch(youTrack.id, url, params);
-  };
-
-  editSearchQuery = () =>
-    this.setState({isConfiguring: true});
-
   renderConfiguration = () => (
     <div className="work-items-widget">
       <WorkItemsEditForm
-        search={this.state.search}
-        context={this.state.context}
         title={this.state.title}
         onSubmit={this.submitConfiguration}
         onCancel={this.cancelConfiguration}
         dashboardApi={this.props.dashboardApi}
-        youTrackId={this.state.youTrack.id}
       />
     </div>
   );
 
   renderContent = () => {
-    const {
-      isConfiguring,
-      youTrack,
-      context,
-      search
-    } = this.state;
-    if (isConfiguring || !youTrack) {
-      return <LoaderInline/>;
-    }
     return (
-      <Content
-        dashboardApi={this.props.dashboardApi}
-        youTrackId={youTrack.id}
-        onEdit={this.editSearchQuery}
-        editable={this.props.editable}
-        query={search}
-        context={context}
-      />
+      <div className="work-items-widget">
+        {/*<ButtonGroup className="work-items-widget_button-group">*/}
+        <Button className="work-items-widget_button" onClick={this.onExport(true)}>CSV</Button>
+        {/*<Button className="work-items-widget_button" onClick={onExport(false)}>EXCEL</Button>*/}
+        {/*</ButtonGroup>*/}
+      </div>
     );
   };
 
@@ -216,24 +179,16 @@ class WorkItemsWidget extends React.Component {
   render() {
     const {
       isConfiguring,
-      search,
-      context,
-      title
     } = this.state;
-
-    const widgetTitle = isConfiguring
-      ? WorkItemsWidget.getDefaultWidgetTitle()
-      : WorkItemsWidget.getWidgetTitle(search, context, title);
+    if (isConfiguring || !filter.youTrackId) {
+      return <LoaderInline/>;
+    }
 
     return (
-      <ConfigurableWidget
-        isConfiguring={isConfiguring}
-        dashboardApi={this.props.dashboardApi}
-        widgetTitle={widgetTitle}
-        // widgetLoader={this.state.isLoading}
-        Configuration={this.renderConfiguration}
-        Content={this.renderContent}
-      />
+      <div>
+        {this.renderConfiguration()}
+        {this.renderContent()}
+      </div>
     );
   }
 }

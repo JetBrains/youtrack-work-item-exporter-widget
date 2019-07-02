@@ -18,8 +18,8 @@
     "topNavigation": true
   },
   "view": {
-    "defaultWidth": 1,
-    "defaultHeight": 1,
+    "defaultWidth": 3,
+    "defaultHeight": 2,
     "fadeOut": false
   }
 

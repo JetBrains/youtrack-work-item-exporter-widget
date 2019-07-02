@@ -6,7 +6,7 @@ export function contentType(csv) {
 }
 
 // eslint-disable-next-line complexity
-export async function loadWorkItems(fetchYouTrack, query, context, csv) {
+export async function loadWorkItems(fetchYouTrack, csv, params) {
   return await fetchYouTrack(
     `api/workItems/export?$top=-1`, {
       method: 'POST',
@@ -14,19 +14,7 @@ export async function loadWorkItems(fetchYouTrack, query, context, csv) {
       headers: {
         'Accept': contentType(csv)
       },
-      body: {
-        query: query,
-        folder: context,
-        // start: 0,
-        // end: 0,
-        // issueFields: '',
-        // workTypes: [],
-        // withoutType: false,
-        // authors: [],
-        // creators: [],
-        // authorsGroup: [],
-        // creatorsGroup: []
-      }
+      body: params
     }
   );
 }
@@ -34,6 +22,10 @@ export async function loadWorkItems(fetchYouTrack, query, context, csv) {
 export async function loadPinnedIssueFolders(fetchYouTrack, loadAll) {
   const packSize = 100;
   return await fetchYouTrack(`api/userIssueFolders?fields=${WATCH_FOLDERS_FIELDS}&$top=${loadAll ? -1 : packSize}`);
+}
+
+export async function loadWorkTypes(fetchYouTrack) {
+  return await fetchYouTrack(`api/admin/timeTrackingSettings/workItemTypes?$top=-1&fields=id,name`);
 }
 
 export async function underlineAndSuggest(fetchYouTrack, query, caret, folder) {

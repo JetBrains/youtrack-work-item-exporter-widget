@@ -10,9 +10,7 @@ import ConfigWrapper from '@jetbrains/hub-widget-ui/dist/config-wrapper';
 import WorkItemsWidget from './work-items-widget';
 import TRANSLATIONS from './translations';
 
-const CONFIG_FIELDS = [
-  'search', 'context', 'title', 'youTrack'
-];
+const CONFIG_FIELDS = ['filter'];
 
 DashboardAddons.registerWidget(async (dashboardApi, registerWidgetApi) => {
   setLocale(DashboardAddons.locale, TRANSLATIONS);

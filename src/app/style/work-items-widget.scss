@@ -30,11 +30,16 @@
     vertical-align: top;
   }
 
+  &__form-select {
+    width: 100%;
+    vertical-align: top;
+  }
+
   &_button-group {
     width: 100%;
   }
 
   &_button {
-    width: 50%;
+    width: 100%;
   }
 }
