@@ -12,7 +12,7 @@ import ServiceResource from './components/service-resource';
 import DebounceDecorator from './debounceDecorator';
 import {loadPinnedIssueFolders, loadWorkTypes, underlineAndSuggest} from './resources';
 import filter from "./work-items-filter";
-
+import {DatePicker} from "@jetbrains/ring-ui"; // theme css file
 
 const MIN_YOUTRACK_VERSION = '2019.1';
 
@@ -119,6 +119,12 @@ class WorkItemsEditForm extends React.Component {
     this.props.onSubmit();
   };
 
+  changeDateRange = (range) => {
+    filter.startDate = range.from;
+    filter.endDate = range.to;
+    this.props.onSubmit();
+  };
+
   loadAllBackendData = async () => {
     this.setState({allContexts: null, allWorkTypes: []});
     const allContexts = await loadPinnedIssueFolders(this.fetchYouTrack, true);
@@ -152,6 +158,14 @@ class WorkItemsEditForm extends React.Component {
                 loading={!allWorkTypes}
                 label={i18n('All work types')}>
         </Select>
+      </div>
+    );
+  }
+
+  renderDateRange() {
+    return (
+      <div>
+        <DatePicker from={filter.startDate} to={filter.endDate} onChange={this.changeDateRange} range/>
       </div>
     );
   }
@@ -199,6 +213,9 @@ class WorkItemsEditForm extends React.Component {
         </div>
         {
           this.renderWorkTypes()
+        }
+        {
+          this.renderDateRange()
         }
       </div>
     );

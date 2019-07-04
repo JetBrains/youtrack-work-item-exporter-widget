@@ -1,4 +1,7 @@
 import {observable} from "mobx";
+import {addDays, format, parse} from 'date-fns';
+
+const FORMAT = 'YYYY-MM-DD';
 
 class WorkItemsFilter {
 
@@ -7,6 +10,9 @@ class WorkItemsFilter {
 
   @observable withoutWorkType = false;
   @observable workTypes = [];
+
+  @observable startDate = null;
+  @observable endDate = null;
 
   @observable youTrackId = null;
 
@@ -18,6 +24,9 @@ class WorkItemsFilter {
 
       this.workTypes = filter.workTypes || [];
       this.withoutWorkType = filter.withoutWorkType || false;
+
+      this.startDate = filter.startDate ? parse(filter.startDate, FORMAT) : addDays(new Date(), -7);
+      this.endDate = filter.endDate ? parse(filter.endDate, FORMAT) : new Date();
     } catch (e) {
       this.sync(props);
     }
@@ -29,11 +38,20 @@ class WorkItemsFilter {
 
   toRestFilter() {
     const context = this.context;
+
+    function formatDate(date) {
+      return date ? format(date, FORMAT) : null;
+    }
+
     return {
       context: context ? {id: context.id, name: context.id, $type: context.$type} : null,
       search: this.search,
       workTypes: (this.workTypes || []).map(type => type && {id: type.id, name: type.name}),
       withoutWorkType: this.withoutWorkType,
+
+      startDate: formatDate(this.startDate),
+      endDate: formatDate(this.endDate),
+
       youTrack: {
         id: this.youTrackId
       }
