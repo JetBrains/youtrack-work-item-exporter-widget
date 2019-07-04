@@ -10,11 +10,28 @@ import '@jetbrains/ring-ui/components/form/form.scss';
 
 import ServiceResource from './components/service-resource';
 import DebounceDecorator from './debounceDecorator';
-import {loadPinnedIssueFolders, loadWorkTypes, underlineAndSuggest} from './resources';
+import {loadPinnedIssueFolders, loadWorkTypes, queryUserGroups, queryUsers, underlineAndSuggest} from './resources';
 import filter from "./work-items-filter";
 import {DatePicker} from "@jetbrains/ring-ui"; // theme css file
 
 const MIN_YOUTRACK_VERSION = '2019.1';
+
+function markAsUsers(array) {
+  return array.map((it) => {
+    it.isUser = true;
+    return it;
+  });
+}
+
+function markAsGroups(array) {
+  return array.map((it) => {
+    it.isUser = false;
+    return it;
+  });
+}
+
+const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
+
 
 class WorkItemsEditForm extends React.Component {
 
@@ -38,7 +55,9 @@ class WorkItemsEditForm extends React.Component {
     super(props);
 
     this.state = {
-      youTracks: []
+      youTracks: [],
+      authors: [],
+      request: null
     };
     this.underlineAndSuggestDebouncer = new DebounceDecorator();
   }
@@ -125,6 +144,12 @@ class WorkItemsEditForm extends React.Component {
     this.props.onSubmit();
   };
 
+  changeAuthors = (selected) => {
+    filter.authors = selected.map(it => it.model).filter(it => it.isUser);
+    filter.authorGroups = selected.map(it => it.model).filter(it => !it.isUser);
+    this.props.onSubmit();
+  };
+
   loadAllBackendData = async () => {
     this.setState({allContexts: null, allWorkTypes: []});
     const allContexts = await loadPinnedIssueFolders(this.fetchYouTrack, true);
@@ -134,6 +159,26 @@ class WorkItemsEditForm extends React.Component {
 
   onQueryAssistInputChange = queryAssistModel =>
     this.changeSearch(queryAssistModel.query);
+
+  queryUsersAndGroups = async (q) => {
+    const fetchHub = this.props.dashboardApi.fetchHub;
+    const usersData = queryUsers(fetchHub, q);
+    const groupsData = queryUserGroups(fetchHub, q);
+
+    const request = Promise.all([usersData, groupsData]);
+    this.setState({request});
+
+    const data = await request;
+
+    // only the latest request is relevant
+    if (this.state.request === request) {
+      const authors = markAsUsers(data[0].users || []).concat(markAsGroups(data[1].usergroups || []));
+      this.setState({
+        authors: authors.map(toSelectItem),
+        request: null
+      });
+    }
+  };
 
   renderWorkTypes() {
     const {allWorkTypes} = this.state;
@@ -156,6 +201,7 @@ class WorkItemsEditForm extends React.Component {
                 selected={selectedWorkTypes.map(toSelectItem)}
                 onChange={this.changeWorkTypes}
                 loading={!allWorkTypes}
+                clear={true}
                 label={i18n('All work types')}>
         </Select>
       </div>
@@ -170,13 +216,37 @@ class WorkItemsEditForm extends React.Component {
     );
   }
 
+  renderAuthorsAndGroups() {
+    const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
+
+    let selected = markAsUsers(filter.authors).concat(markAsGroups(filter.authorGroups));
+
+    return (
+      <div>
+        <Select className="work-items-widget__form-select"
+                size={InputSize.S}
+                multiple={true}
+                data={this.state.authors}
+                filter={{
+                  placeholder: 'Search user or group',
+                  fn: () => true, // disable client filtering
+                }}
+                onFilter={this.queryUsersAndGroups}
+                selected={selected.map(toSelectItem)}
+                onChange={this.changeAuthors}
+                loading={!!this.state.request}
+                clear={true}
+                label={i18n('All authors')}>
+        </Select>
+      </div>
+    );
+  }
+
   renderFilteringSettings() {
     const {
       allContexts,
       errorMessage
     } = this.state;
-
-    const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
 
     const contextOptions = (allContexts || []).map(toSelectItem);
     contextOptions.unshift(WorkItemsEditForm.EVERYTHING_CONTEXT_OPTION);
@@ -216,6 +286,9 @@ class WorkItemsEditForm extends React.Component {
         }
         {
           this.renderDateRange()
+        }
+        {
+          this.renderAuthorsAndGroups()
         }
       </div>
     );

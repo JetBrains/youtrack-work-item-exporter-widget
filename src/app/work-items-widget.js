@@ -105,7 +105,6 @@ class WorkItemsWidget extends React.Component {
   };
 
   onExport(csv) {
-
     return async () => {
       function saveBlob(response, fileName) {
         const blob = response.data;
@@ -119,7 +118,6 @@ class WorkItemsWidget extends React.Component {
         const binaryData = [];
         binaryData.push(blob);
         const blobURL = window.URL.createObjectURL(new Blob(binaryData, {type: contentType(csv)}));
-        // const blobURL = window.URL.createObjectURL(blob);
 
         let element = document;
         const anchor = document.createElement('a');
@@ -136,10 +134,16 @@ class WorkItemsWidget extends React.Component {
         setTimeout(() => window.URL.revokeObjectURL(blobURL), 0, false);
       }
 
-      const response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
-      saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
+      let response;
+      try {
+        response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
+      }catch (error) {
+        // TODO handle me
+      }
+      if (response) {
+        saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
+      }
     };
-
   }
 
 

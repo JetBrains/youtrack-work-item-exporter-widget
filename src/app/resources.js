@@ -34,3 +34,26 @@ export async function underlineAndSuggest(fetchYouTrack, query, caret, folder) {
     body: {query, caret, folder}
   });
 }
+
+export async function queryUsers(fetchHub, query) {
+  return fetchHub('api/rest/users', {
+      query: {
+        query,
+        fields: 'id,login,name',
+        orderBy: 'login',
+        $top: 10
+      }
+    }
+  );
+}
+
+export async function queryUserGroups(fetchHub, query) {
+  return fetchHub('api/rest/usergroups', {
+      query: {
+        query,
+        fields: 'id,name',
+        $top: 10
+      }
+    }
+  );
+}
