@@ -33,25 +33,14 @@ class WorkItemsWidget extends React.Component {
   static propTypes = {
     dashboardApi: PropTypes.object,
     configWrapper: PropTypes.object,
-    registerWidgetApi: PropTypes.func,
-    editable: PropTypes.bool
+    registerWidgetApi: PropTypes.func
   };
 
   constructor(props) {
     super(props);
-    const {registerWidgetApi} = props;
-
     this.state = {
       isConfiguring: false
     };
-
-    registerWidgetApi({
-      onConfigure: () => this.setState({
-        isConfiguring: true,
-        // isLoading: false,
-        isLoadDataError: false
-      })
-    });
   }
 
   componentDidMount() {
@@ -147,22 +136,11 @@ class WorkItemsWidget extends React.Component {
   }
 
 
-  cancelConfiguration = async () => {
-    if (this.props.configWrapper.isNewConfig()) {
-      await this.props.dashboardApi.removeWidget();
-    } else {
-      this.setState({isConfiguring: false});
-      await this.props.dashboardApi.exitConfigMode();
-      this.initialize(this.props.dashboardApi);
-    }
-  };
-
   renderConfiguration = () => (
     <div className="work-items-widget">
       <WorkItemsEditForm
         title={this.state.title}
         onSubmit={this.submitConfiguration}
-        onCancel={this.cancelConfiguration}
         dashboardApi={this.props.dashboardApi}
       />
     </div>
