@@ -53,7 +53,7 @@ class WorkItemsFilter {
     const hasId = (it) => it.id;
 
     return {
-      context: context ? {id: context.id, name: context.id, $type: context.$type} : null,
+      context: context ? {id: context.id, name: context.name, $type: context.$type} : null,
       search: this.search,
       workTypes: (this.workTypes || []).map(type => type && {id: type.id, name: type.name}),
       withoutWorkType: this.withoutWorkType,

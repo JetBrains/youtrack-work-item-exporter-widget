@@ -46,7 +46,7 @@ class WorkItemsEditForm extends React.Component {
   };
 
   static propTypes = {
-    onСhange: PropTypes.func,
+    syncConfig: PropTypes.func,
     dashboardApi: PropTypes.object
   };
 
@@ -127,7 +127,7 @@ class WorkItemsEditForm extends React.Component {
 
   changeSearchContext = selected => {
     filter.context = selected.model;
-    this.props.onСhange();
+    this.props.syncConfig();
   };
 
   changeWorkTypes = selected => {
@@ -136,19 +136,19 @@ class WorkItemsEditForm extends React.Component {
     filter.workTypes = workTypes;
     filter.withoutWorkType = array.length !== workTypes.length;
 
-    this.props.onСhange();
+    this.props.syncConfig();
   };
 
   changeDateRange = (range) => {
     filter.startDate = range.from;
     filter.endDate = range.to;
-    this.props.onСhange();
+    this.props.syncConfig();
   };
 
   changeAuthors = (selected) => {
     filter.authors = selected.map(it => it.model).filter(it => it.isUser);
     filter.authorGroups = selected.map(it => it.model).filter(it => !it.isUser);
-    this.props.onСhange();
+    this.props.syncConfig();
   };
 
   loadAllBackendData = async () => {

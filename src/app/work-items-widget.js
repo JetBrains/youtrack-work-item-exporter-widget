@@ -83,7 +83,7 @@ class WorkItemsWidget extends React.Component {
     }
   }
 
-  submitConfiguration = async () => {
+  syncConfiguration = async () => {
     filter.sync(this.props);
     this.setState({isConfiguring: false});
   };
@@ -140,7 +140,7 @@ class WorkItemsWidget extends React.Component {
     <div className="work-items-widget">
       <WorkItemsEditForm
         title={this.state.title}
-        onSubmit={this.submitConfiguration}
+        syncConfig={this.syncConfiguration}
         dashboardApi={this.props.dashboardApi}
       />
     </div>
