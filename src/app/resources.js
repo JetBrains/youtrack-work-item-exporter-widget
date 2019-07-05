@@ -39,7 +39,7 @@ export async function queryUsers(fetchHub, query) {
   return fetchHub('api/rest/users', {
       query: {
         query,
-        fields: 'id,login,name',
+        fields: 'id,name,profile(avatar(url))',
         orderBy: 'login',
         $top: 10
       }

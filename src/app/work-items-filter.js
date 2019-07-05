@@ -61,8 +61,8 @@ class WorkItemsFilter {
       startDate: formatDate(this.startDate),
       endDate: formatDate(this.endDate),
 
-      authors: (this.authors || []).filter(hasId).map(type => type && {id: type.id, name: type.name}),
-      authorGroups: (this.authorGroups || []).filter(hasId).map(type => type && {id: type.id, name: type.name}),
+      authors: (this.authors || []).filter(hasId).map(user => user && {id: user.id, name: user.name, avatarURL: user.avatarURL}),
+      authorGroups: (this.authorGroups || []).filter(hasId).map(group => group && {id: group.id, name: group.name}),
 
       youTrack: {
         id: this.youTrackId

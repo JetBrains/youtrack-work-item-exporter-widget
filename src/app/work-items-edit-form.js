@@ -16,21 +16,21 @@ import {DatePicker} from "@jetbrains/ring-ui"; // theme css file
 
 const MIN_YOUTRACK_VERSION = '2019.1';
 
-function markAsUsers(array) {
+function toUsers(array) {
   return array.map((it) => {
     it.isUser = true;
     return it;
   });
 }
 
-function markAsGroups(array) {
+function toGroups(array) {
   return array.map((it) => {
     it.isUser = false;
     return it;
   });
 }
 
-const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
+const toSelectItem = it => it && {key: it.id, label: it.name, avatar: it.avatarURL, model: it};
 
 
 class WorkItemsEditForm extends React.Component {
@@ -54,9 +54,11 @@ class WorkItemsEditForm extends React.Component {
   constructor(props) {
     super(props);
 
+    let selectedAuthors = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
+
     this.state = {
       youTracks: [],
-      authors: [],
+      authors: selectedAuthors.map(toSelectItem),
       request: null
     };
     this.underlineAndSuggestDebouncer = new DebounceDecorator();
@@ -172,7 +174,16 @@ class WorkItemsEditForm extends React.Component {
 
     // only the latest request is relevant
     if (this.state.request === request) {
-      const authors = markAsUsers(data[0].users || []).concat(markAsGroups(data[1].usergroups || []));
+      const users = (data[0].users || []).map(it => {
+        if (it.profile && it.profile.avatar && it.profile.avatar.url) {
+          it.avatarURL = it.profile.avatar.url;
+        } else {
+          it.avatarURL = null;
+        }
+        return it;
+      });
+      let groups = data[1].usergroups || [];
+      const authors = toUsers(users).concat(toGroups(groups));
       this.setState({
         authors: authors.map(toSelectItem),
         request: null
@@ -217,9 +228,7 @@ class WorkItemsEditForm extends React.Component {
   }
 
   renderAuthorsAndGroups() {
-    const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
-
-    let selected = markAsUsers(filter.authors).concat(markAsGroups(filter.authorGroups));
+    let selected = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
 
     return (
       <div>
