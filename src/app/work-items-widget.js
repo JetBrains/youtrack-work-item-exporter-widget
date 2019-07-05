@@ -137,8 +137,8 @@ class WorkItemsWidget extends React.Component {
       let response;
       try {
         response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
-      }catch (error) {
-        // TODO handle me
+      } catch (error) {
+        this.props.dashboardApi.setError({data: 'Can\'t export data: ' + error});
       }
       if (response) {
         saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
