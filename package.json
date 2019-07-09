@@ -36,7 +36,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "classnames": "^2.2.6",
-    "css-loader": "0.28.7",
+    "css-loader": "^3.0.0",
     "date-fns": "^1.30.1",
     "fecha": "3.0.0",
     "html-loader": "0.4.4",
@@ -60,7 +60,6 @@
     "webpack-dev-server": "3.1.14"
   },
   "devDependencies": {
-    "eslint-import-resolver-webpack": "^0.11.0",
     "@jetbrains/eslint-config": "^4.0.3",
     "@jetbrains/generator-ring-ui": "0.4.5",
     "@jetbrains/stylelint-config": "1.1.35",
@@ -75,6 +74,7 @@
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.7.1",
     "eslint": "^5.12.1",
+    "eslint-import-resolver-webpack": "^0.11.0",
     "json-loader": "0.5.7",
     "karma": "3.1.4",
     "karma-chai-plugins": "0.9.0",
@@ -83,6 +83,9 @@
     "karma-sourcemap-loader": "0.3.7",
     "karma-teamcity-reporter": "1.1.0",
     "karma-webpack": "3.0.5",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.4.3",
+    "mobx-react-devtools": "^6.0.1",
     "mocha": "5.1.1",
     "react-test-renderer": "^16.2.0",
     "sinon": "2.3.5",
@@ -90,10 +93,7 @@
     "stylelint": "7.11.1",
     "webpack-cli": "3.2.1",
     "xvfb-maybe": "0.2.1",
-    "yo": "1.8.5",
-    "mobx": "^5.0.3",
-    "mobx-react": "^5.4.3",
-    "mobx-react-devtools": "^6.0.1"
+    "yo": "^3.1.0"
   },
   "engines": {
     "node": ">=6.0.0"
