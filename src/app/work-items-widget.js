@@ -11,7 +11,7 @@ import WorkItemsEditForm from './work-items-edit-form';
 
 import './style/work-items-widget.scss';
 
-import {contentType, loadWorkItems} from './resources';
+import {loadWorkItems} from './resources';
 import filter from './work-items-filter';
 
 
@@ -91,53 +91,16 @@ class WorkItemsWidget extends React.Component {
     this.setState({isConfiguring: false});
   };
 
-  fetchYouTrack = async (url, params) => {
-    const {dashboardApi} = this.props;
-    return await dashboardApi.fetch(filter.youTrackId, url, params);
-  };
-
   onExport(csv) {
     return async () => {
-      function saveBlob(response, fileName) {
-        const blob = response.data;
-        if (
-          window.navigator &&
-          window.navigator.msSaveOrOpenBlob) {
-          window.navigator.msSaveOrOpenBlob(blob, fileName);
-          return;
-        }
-
-        const binaryData = [];
-        binaryData.push(blob);
-        const blobURL = window.URL.createObjectURL(new Blob(binaryData, {type: contentType(csv)}));
-
-        const element = document;
-        const anchor = document.createElement('a');
-        anchor.download = fileName;
-        anchor.href = blobURL;
-
-        // append to the document to make URL works in Firefox
-        anchor.style.display = 'none';
-        element.body.appendChild(anchor);
-        anchor.onclick = () => anchor.parentNode.removeChild(anchor);
-
-        anchor.click();
-
-        setTimeout(() => window.URL.revokeObjectURL(blobURL), 0, false);
-      }
-
-      let response;
+      const {dashboardApi} = this.props;
       try {
-        response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
+        await loadWorkItems(dashboardApi, filter.youTrackId, csv, filter.toRestFilter(), `work_items.${csv ? 'csv' : 'xlsx'}`);
       } catch (error) {
-        this.props.dashboardApi.setError({data: `Can't export data: ${ error}`});
-      }
-      if (response) {
-        saveBlob(response, `work_items.${ csv ? 'csv' : 'xls'}`);
+        this.props.dashboardApi.setError({data: `Can't export data: ${error}`});
       }
     };
   }
-
 
   renderConfiguration = () => (
     <div className="work-items-widget">

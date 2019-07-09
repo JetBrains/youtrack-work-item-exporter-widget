@@ -6,16 +6,19 @@ export function contentType(csv) {
 }
 
 // eslint-disable-next-line complexity
-export async function loadWorkItems(fetchYouTrack, csv, params) {
-  return await fetchYouTrack(
-    'api/workItems/export?$top=-1', {
+export async function loadWorkItems(dashboardApi, serviceId, csv, params, fileName) {
+  return await dashboardApi.downloadFile(
+    serviceId,
+    'api/workItems/export?$top=-1',
+    {
       method: 'POST',
       responseType: 'blob',
       headers: {
         Accept: contentType(csv)
       },
       body: params
-    }
+    },
+    fileName
   );
 }
 
@@ -43,8 +46,7 @@ export async function queryUsers(fetchHub, query) {
       orderBy: 'login',
       $top: 10
     }
-  }
-  );
+  });
 }
 
 export async function queryUserGroups(fetchHub, query) {
@@ -54,6 +56,5 @@ export async function queryUserGroups(fetchHub, query) {
       fields: 'id,name',
       $top: 10
     }
-  }
-  );
+  });
 }

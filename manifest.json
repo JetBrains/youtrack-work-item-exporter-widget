@@ -7,11 +7,11 @@
   "author": "YouTrack Team",
   "dependencies": {
     "YouTrack": ">=2019.1",
-    "Hub": ">3.0"
+    "Hub": ">2019.1.11587"
   },
   "products": {
     "YouTrack": ">=2019.1",
-    "Hub": ">3.0"
+    "Hub": ">2019.1.11587"
   },
   "capabilities": {
     "popups": true,
