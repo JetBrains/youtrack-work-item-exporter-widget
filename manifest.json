@@ -1,8 +1,8 @@
 {
   "key": "youtrack-work-items-export",
   "version": "1.0.0",
-  "name": "Work item exporter",
-  "description": "Exports work items in CSV and Excel format.",
+  "name": "Work Item Exporter",
+  "description": "This widget provides an interface for exporting work item data from YouTrack. You can add this widget to dashboards and project overview pages in your YouTrack or Hub installation.",
   "applicationName": "YouTrack",
   "author": "YouTrack Team",
   "dependencies": {
