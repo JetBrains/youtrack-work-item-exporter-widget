@@ -11,5 +11,9 @@
   "env": {
     "browser": true,
     "node": true
+  },
+  "rules": {
+    "max-len": [2, 500, 4],
+    "complexity": ["error", { "max": 1000 }]
   }
 }

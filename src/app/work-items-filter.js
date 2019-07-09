@@ -1,4 +1,4 @@
-import {observable} from "mobx";
+import {observable} from 'mobx';
 import {addDays, format, parse} from 'date-fns';
 
 const FORMAT = 'YYYY-MM-DD';
@@ -22,13 +22,14 @@ class WorkItemsFilter {
   restore(props) {
     try {
       const filter = props.configWrapper.getFieldValue('filter');
+      const WEEK_AGO = -7;
       this.search = filter.search;
       this.context = filter.context;
 
       this.workTypes = filter.workTypes || [];
       this.withoutWorkType = filter.withoutWorkType || false;
 
-      this.startDate = filter.startDate ? parse(filter.startDate, FORMAT) : addDays(new Date(), -7);
+      this.startDate = filter.startDate ? parse(filter.startDate, FORMAT) : addDays(new Date(), WEEK_AGO);
       this.endDate = filter.endDate ? parse(filter.endDate, FORMAT) : new Date();
 
       this.authors = filter.authors || [];
@@ -50,7 +51,7 @@ class WorkItemsFilter {
       return date ? format(date, FORMAT) : null;
     }
 
-    const hasId = (it) => it.id;
+    const hasId = it => it.id;
 
     return {
       context: context ? {id: context.id, name: context.name, $type: context.$type} : null,
@@ -67,12 +68,12 @@ class WorkItemsFilter {
       youTrack: {
         id: this.youTrackId
       }
-    }
+    };
   }
 
   toRestFilter() {
 
-    const withRingId = (it) => {
+    const withRingId = it => {
       const id = it.id;
       delete it.id;
       it.ringId = id;

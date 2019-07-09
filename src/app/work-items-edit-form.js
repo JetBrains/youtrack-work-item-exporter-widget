@@ -8,23 +8,24 @@ import {i18n} from 'hub-dashboard-addons/dist/localization';
 import HttpErrorHandler from '@jetbrains/hub-widget-ui/dist/http-error-handler';
 import '@jetbrains/ring-ui/components/form/form.scss';
 
+import {DatePicker} from '@jetbrains/ring-ui'; // theme css file
+
 import ServiceResource from './components/service-resource';
 import DebounceDecorator from './debounceDecorator';
 import {loadPinnedIssueFolders, loadWorkTypes, queryUserGroups, queryUsers, underlineAndSuggest} from './resources';
-import filter from "./work-items-filter";
-import {DatePicker} from "@jetbrains/ring-ui"; // theme css file
+import filter from './work-items-filter';
 
 const MIN_YOUTRACK_VERSION = '2019.1';
 
 function toUsers(array) {
-  return array.map((it) => {
+  return array.map(it => {
     it.isUser = true;
     return it;
   });
 }
 
 function toGroups(array) {
-  return array.map((it) => {
+  return array.map(it => {
     it.isUser = false;
     return it;
   });
@@ -53,7 +54,7 @@ class WorkItemsEditForm extends React.Component {
   constructor(props) {
     super(props);
 
-    let selectedAuthors = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
+    const selectedAuthors = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
 
     this.state = {
       youTracks: [],
@@ -131,21 +132,21 @@ class WorkItemsEditForm extends React.Component {
   };
 
   changeWorkTypes = selected => {
-    const array = (selected || []).map((workType) => workType.model);
-    const workTypes = array.filter((workType) => workType.id !== WorkItemsEditForm.WITHOUT_TYPE.id);
+    const array = (selected || []).map(workType => workType.model);
+    const workTypes = array.filter(workType => workType.id !== WorkItemsEditForm.WITHOUT_TYPE.id);
     filter.workTypes = workTypes;
     filter.withoutWorkType = array.length !== workTypes.length;
 
     this.props.syncConfig();
   };
 
-  changeDateRange = (range) => {
+  changeDateRange = range => {
     filter.startDate = range.from;
     filter.endDate = range.to;
     this.props.syncConfig();
   };
 
-  changeAuthors = (selected) => {
+  changeAuthors = selected => {
     filter.authors = selected.map(it => it.model).filter(it => it.isUser);
     filter.authorGroups = selected.map(it => it.model).filter(it => !it.isUser);
     this.props.syncConfig();
@@ -161,7 +162,7 @@ class WorkItemsEditForm extends React.Component {
   onQueryAssistInputChange = queryAssistModel =>
     this.changeSearch(queryAssistModel.query);
 
-  queryUsersAndGroups = async (q) => {
+  queryUsersAndGroups = async q => {
     const fetchHub = this.props.dashboardApi.fetchHub;
     const usersData = queryUsers(fetchHub, q);
     const groupsData = queryUserGroups(fetchHub, q);
@@ -181,7 +182,7 @@ class WorkItemsEditForm extends React.Component {
         }
         return it;
       });
-      let groups = data[1].usergroups || [];
+      const groups = data[1].usergroups || [];
       const authors = toUsers(users).concat(toGroups(groups));
       this.setState({
         authors: authors.map(toSelectItem),
@@ -193,27 +194,28 @@ class WorkItemsEditForm extends React.Component {
   renderWorkTypes() {
     const {allWorkTypes} = this.state;
 
-    const toSelectItem = it => it && {key: it.id, label: it.name, model: it};
+    const toSelectItemShort = it => it && {key: it.id, label: it.name, model: it};
 
-    const all = (allWorkTypes || []).concat(WorkItemsEditForm.WITHOUT_TYPE).map(toSelectItem);
+    const all = (allWorkTypes || []).concat(WorkItemsEditForm.WITHOUT_TYPE).map(toSelectItemShort);
 
     let selectedWorkTypes = filter.workTypes;
     if (filter.withoutWorkType) {
-      selectedWorkTypes = selectedWorkTypes.concat(WorkItemsEditForm.WITHOUT_TYPE)
+      selectedWorkTypes = selectedWorkTypes.concat(WorkItemsEditForm.WITHOUT_TYPE);
     }
 
     return (
       <div>
-        <Select className="work-items-widget__form-select"
-                size={InputSize.S}
-                data={all}
-                multiple={true}
-                selected={selectedWorkTypes.map(toSelectItem)}
-                onChange={this.changeWorkTypes}
-                loading={!allWorkTypes}
-                clear={true}
-                label={i18n('All work types')}>
-        </Select>
+        <Select
+          className="work-items-widget__form-select"
+          size={InputSize.S}
+          data={all}
+          multiple
+          selected={selectedWorkTypes.map(toSelectItemShort)}
+          onChange={this.changeWorkTypes}
+          loading={!allWorkTypes}
+          clear
+          label={i18n('All work types')}
+        />
       </div>
     );
   }
@@ -227,25 +229,26 @@ class WorkItemsEditForm extends React.Component {
   }
 
   renderAuthorsAndGroups() {
-    let selected = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
+    const selected = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
 
     return (
       <div>
-        <Select className="work-items-widget__form-select"
-                size={InputSize.S}
-                multiple={true}
-                data={this.state.authors}
-                filter={{
-                  placeholder: 'Search user or group',
-                  fn: () => true, // disable client filtering
-                }}
-                onFilter={this.queryUsersAndGroups}
-                selected={selected.map(toSelectItem)}
-                onChange={this.changeAuthors}
-                loading={!!this.state.request}
-                clear={true}
-                label={i18n('All authors')}>
-        </Select>
+        <Select
+          className="work-items-widget__form-select"
+          size={InputSize.S}
+          multiple
+          data={this.state.authors}
+          filter={{
+            placeholder: 'Search user or group',
+            fn: () => true // disable client filtering
+          }}
+          onFilter={this.queryUsersAndGroups}
+          selected={selected.map(toSelectItem)}
+          onChange={this.changeAuthors}
+          loading={!!this.state.request}
+          clear
+          label={i18n('All authors')}
+        />
       </div>
     );
   }
@@ -262,7 +265,7 @@ class WorkItemsEditForm extends React.Component {
     if (errorMessage) {
       return (
         <span>{errorMessage}</span>
-      )
+      );
     }
 
     return (

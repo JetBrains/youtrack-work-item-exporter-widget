@@ -8,11 +8,11 @@ export function contentType(csv) {
 // eslint-disable-next-line complexity
 export async function loadWorkItems(fetchYouTrack, csv, params) {
   return await fetchYouTrack(
-    `api/workItems/export?$top=-1`, {
+    'api/workItems/export?$top=-1', {
       method: 'POST',
       responseType: 'blob',
       headers: {
-        'Accept': contentType(csv)
+        Accept: contentType(csv)
       },
       body: params
     }
@@ -25,7 +25,7 @@ export async function loadPinnedIssueFolders(fetchYouTrack, loadAll) {
 }
 
 export async function loadWorkTypes(fetchYouTrack) {
-  return await fetchYouTrack(`api/admin/timeTrackingSettings/workItemTypes?$top=-1&fields=id,name`);
+  return await fetchYouTrack('api/admin/timeTrackingSettings/workItemTypes?$top=-1&fields=id,name');
 }
 
 export async function underlineAndSuggest(fetchYouTrack, query, caret, folder) {
@@ -37,23 +37,23 @@ export async function underlineAndSuggest(fetchYouTrack, query, caret, folder) {
 
 export async function queryUsers(fetchHub, query) {
   return fetchHub('api/rest/users', {
-      query: {
-        query,
-        fields: 'id,name,profile(avatar(url))',
-        orderBy: 'login',
-        $top: 10
-      }
+    query: {
+      query,
+      fields: 'id,name,profile(avatar(url))',
+      orderBy: 'login',
+      $top: 10
     }
+  }
   );
 }
 
 export async function queryUserGroups(fetchHub, query) {
   return fetchHub('api/rest/usergroups', {
-      query: {
-        query,
-        fields: 'id,name',
-        $top: 10
-      }
+    query: {
+      query,
+      fields: 'id,name',
+      $top: 10
     }
+  }
   );
 }

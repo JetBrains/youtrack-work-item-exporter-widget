@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ButtonGroup from '@jetbrains/ring-ui/components/button-group/button-group';
+import LoaderInline from '@jetbrains/ring-ui/components/loader-inline/loader-inline';
+import {Button} from '@jetbrains/ring-ui';
+import {observer} from 'mobx-react';
+
 import ServiceResource from './components/service-resource';
 import WorkItemsEditForm from './work-items-edit-form';
 
 import './style/work-items-widget.scss';
-import LoaderInline from "@jetbrains/ring-ui/components/loader-inline/loader-inline";
-import {Button} from "@jetbrains/ring-ui";
-import {contentType, loadWorkItems} from "./resources";
-import filter from "./work-items-filter";
 
-import {observer} from 'mobx-react';
+import {contentType, loadWorkItems} from './resources';
+import filter from './work-items-filter';
+
 
 @observer
 class WorkItemsWidget extends React.Component {
@@ -108,7 +111,7 @@ class WorkItemsWidget extends React.Component {
         binaryData.push(blob);
         const blobURL = window.URL.createObjectURL(new Blob(binaryData, {type: contentType(csv)}));
 
-        let element = document;
+        const element = document;
         const anchor = document.createElement('a');
         anchor.download = fileName;
         anchor.href = blobURL;
@@ -127,10 +130,10 @@ class WorkItemsWidget extends React.Component {
       try {
         response = await loadWorkItems(this.fetchYouTrack, csv, filter.toRestFilter());
       } catch (error) {
-        this.props.dashboardApi.setError({data: 'Can\'t export data: ' + error});
+        this.props.dashboardApi.setError({data: `Can't export data: ${ error}`});
       }
       if (response) {
-        saveBlob(response, 'work_items.' + (csv ? 'csv' : 'xls'))
+        saveBlob(response, `work_items.${ csv ? 'csv' : 'xls'}`);
       }
     };
   }
@@ -146,21 +149,19 @@ class WorkItemsWidget extends React.Component {
     </div>
   );
 
-  renderContent = () => {
-    return (
-      <div className="work-items-widget">
-        {/*<ButtonGroup className="work-items-widget_button-group">*/}
-        <Button className="work-items-widget_button" onClick={this.onExport(true)}>CSV</Button>
-        {/*<Button className="work-items-widget_button" onClick={onExport(false)}>EXCEL</Button>*/}
-        {/*</ButtonGroup>*/}
-      </div>
-    );
-  };
+  renderContent = () => (
+    <div className="work-items-widget">
+      <ButtonGroup className="work-items-widget_button-group">
+        <Button className="work-items-widget_button" onClick={this.onExport(true)}>{'CSV'}</Button>
+        <Button className="work-items-widget_button" onClick={this.onExport(false)}>{'EXCEL'}</Button>
+      </ButtonGroup>
+    </div>
+  );
 
   // eslint-disable-next-line complexity
   render() {
     const {
-      isConfiguring,
+      isConfiguring
     } = this.state;
     if (isConfiguring || !filter.youTrackId) {
       return <LoaderInline/>;
