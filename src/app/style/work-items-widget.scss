@@ -37,7 +37,8 @@
   }
 
   &_button-group {
-    width: 100%;
+    width: 90%;
+    width: calc(100% - 16px);
   }
 
   &_button {

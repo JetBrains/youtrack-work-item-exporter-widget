@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import QueryAssist from '@jetbrains/ring-ui/components/query-assist/query-assist';
 import {Size as InputSize} from '@jetbrains/ring-ui/components/input/input';
 import Select from '@jetbrains/ring-ui/components/select/select';
+import TagsInput from '@jetbrains/ring-ui/components/tags-input/tags-input';
 import LoaderInline from '@jetbrains/ring-ui/components/loader-inline/loader-inline';
 import {i18n} from 'hub-dashboard-addons/dist/localization';
 import HttpErrorHandler from '@jetbrains/hub-widget-ui/dist/http-error-handler';
+import ConfigurationForm from '@jetbrains/hub-widget-ui/dist/configuration-form';
+import Permissions from '@jetbrains/hub-widget-ui/dist/permissions';
+import ButtonGroup from '@jetbrains/ring-ui/components/button-group/button-group';
+import List from '@jetbrains/ring-ui/components/list/list';
+import EmptyWidget, {EmptyWidgetFaces} from '@jetbrains/hub-widget-ui/dist/empty-widget';
 import '@jetbrains/ring-ui/components/form/form.scss';
 
-import {DatePicker} from '@jetbrains/ring-ui'; // theme css file
+import {Button, DatePicker} from '@jetbrains/ring-ui'; // theme css file
 
 import ServiceResource from './components/service-resource';
 import DebounceDecorator from './debounceDecorator';
@@ -36,19 +42,32 @@ const toSelectItem = it => it && {key: it.id, label: it.name, avatar: it.avatarU
 
 class WorkItemsEditForm extends React.Component {
 
-  static WITHOUT_TYPE = {
+  static getWithoutTypeOption = () => ({
     id: 'without_type',
-    name: 'Without type'
-  };
+    label: i18n('Without type')
+  });
 
-  static EVERYTHING_CONTEXT_OPTION = {
+  static getAllTypesOption = () => ({
+    id: 'all_types',
+    label: i18n('All types'),
+    description: i18n('Clear selected')
+  });
+
+  static getEverythingContextOption = () => ({
     id: '-1',
     label: i18n('Everything')
-  };
+  });
+
+  static getAllAuthorsOption = () => ({
+    id: 'all_authors',
+    label: i18n('All authors'),
+    description: i18n('Clear selected')
+  });
 
   static propTypes = {
     syncConfig: PropTypes.func,
-    dashboardApi: PropTypes.object
+    dashboardApi: PropTypes.object,
+    exportActionGetter: PropTypes.func
   };
 
   constructor(props) {
@@ -67,6 +86,12 @@ class WorkItemsEditForm extends React.Component {
   componentDidMount() {
     this.loadYouTrackList();
     this.onAfterYouTrackChanged();
+
+    Permissions.init(this.props.dashboardApi).then(
+      () => this.setState({
+        permissions: Permissions
+      })
+    );
   }
 
   setFormLoaderEnabled(isLoading) {
@@ -74,14 +99,10 @@ class WorkItemsEditForm extends React.Component {
   }
 
   async loadYouTrackList() {
-    const {youTrackId} = filter;
     const youTracks = await ServiceResource.getYouTrackServices(
       this.props.dashboardApi.fetchHub, MIN_YOUTRACK_VERSION
     );
-    const selectedYouTrackWithAllFields = youTracks.filter(yt => yt.id === youTrackId)[0];
-    this.setState({
-      youTracks, selectedYouTrack: selectedYouTrackWithAllFields
-    });
+    this.setState({youTracks});
   }
 
   async onAfterYouTrackChanged() {
@@ -98,6 +119,7 @@ class WorkItemsEditForm extends React.Component {
       });
       return;
     }
+    this.props.syncConfig();
     this.setFormLoaderEnabled(false);
   }
 
@@ -106,8 +128,8 @@ class WorkItemsEditForm extends React.Component {
   };
 
   changeYouTrack = selected => {
+    filter.youTrackId = selected && selected.model && selected.model.id;
     this.setState({
-      selectedYouTrack: selected.model,
       errorMessage: ''
     }, () => this.onAfterYouTrackChanged());
   };
@@ -131,24 +153,23 @@ class WorkItemsEditForm extends React.Component {
     this.props.syncConfig();
   };
 
-  changeWorkTypes = selected => {
-    const array = (selected || []).map(workType => workType.model);
-    const workTypes = array.filter(workType => workType.id !== WorkItemsEditForm.WITHOUT_TYPE.id);
-    filter.workTypes = workTypes;
-    filter.withoutWorkType = array.length !== workTypes.length;
+  onAddWorkType = ({tag}) => {
+    if (tag.id === WorkItemsEditForm.getAllTypesOption().id) {
+      filter.workTypes = [];
+    } else if (tag.model) {
+      filter.workTypes = (filter.workTypes || []).concat([tag.model]);
+    }
+    this.props.syncConfig();
+  };
 
+  onRemoveWorkType = ({tag}) => {
+    filter.workTypes = (filter.workTypes || []).filter(type => type.id !== tag.id);
     this.props.syncConfig();
   };
 
   changeDateRange = range => {
     filter.startDate = range.from;
     filter.endDate = range.to;
-    this.props.syncConfig();
-  };
-
-  changeAuthors = selected => {
-    filter.authors = selected.map(it => it.model).filter(it => it.isUser);
-    filter.authorGroups = selected.map(it => it.model).filter(it => !it.isUser);
     this.props.syncConfig();
   };
 
@@ -162,10 +183,10 @@ class WorkItemsEditForm extends React.Component {
   onQueryAssistInputChange = queryAssistModel =>
     this.changeSearch(queryAssistModel.query);
 
-  queryUsersAndGroups = async q => {
+  queryUsersAndGroups = async ({query}) => {
     const fetchHub = this.props.dashboardApi.fetchHub;
-    const usersData = queryUsers(fetchHub, q);
-    const groupsData = queryUserGroups(fetchHub, q);
+    const usersData = queryUsers(fetchHub, query);
+    const groupsData = queryUserGroups(fetchHub, query);
 
     const request = Promise.all([usersData, groupsData]);
     this.setState({request});
@@ -183,47 +204,142 @@ class WorkItemsEditForm extends React.Component {
         return it;
       });
       const groups = data[1].usergroups || [];
-      const authors = toUsers(users).concat(toGroups(groups));
+      const authors = toUsers(users).concat(toGroups(groups)).map(toSelectItem);
       this.setState({
-        authors: authors.map(toSelectItem),
+        authors,
         request: null
       });
+
+      return authors;
     }
+
+    return this.state.authors;
+  };
+
+  onAddWorkAuthor = ({tag}) => {
+    if (tag.id === WorkItemsEditForm.getAllAuthorsOption().id) {
+      filter.authors = [];
+      filter.authorGroups = [];
+      this.props.syncConfig();
+      return;
+    }
+
+    const workAuthor = tag.model;
+    if (!workAuthor) {
+      return;
+    }
+
+    if (workAuthor.isUser) {
+      filter.authors = (filter.authors || []).concat([workAuthor]);
+    } else {
+      filter.authorGroups = (filter.authorGroups || []).concat([workAuthor]);
+    }
+
+    this.props.syncConfig();
+  };
+
+
+  onRemoveWorkAuthor = ({tag}) => {
+    const workAuthor = tag.model;
+    if (!workAuthor) {
+      return;
+    }
+
+    if (workAuthor.isUser) {
+      filter.authors = (filter.authors || []).filter(
+        author => author.id !== workAuthor.id
+      );
+    } else {
+      filter.authorGroups = (filter.authorGroups || []).filter(
+        author => author.id !== workAuthor.id
+      );
+    }
+
+    this.props.syncConfig();
+  };
+
+  renderExportButton = () => {
+    const {allWorkTypes} = this.state;
+
+    if (!(allWorkTypes || []).length) {
+      return (
+        <div>{i18n('No work items types loaded')}</div>
+      );
+    }
+
+    return (
+      <ButtonGroup className="work-items-widget_button-group">
+        <Button
+          className="work-items-widget_button"
+          onClick={this.props.exportActionGetter(true)}
+        >
+          {i18n('CSV')}
+        </Button>
+        <Button
+          className="work-items-widget_button"
+          onClick={this.props.exportActionGetter(false)}
+        >
+          {i18n('EXCEL')}
+        </Button>
+      </ButtonGroup>
+    );
   };
 
   renderWorkTypes() {
     const {allWorkTypes} = this.state;
 
-    const toSelectItemShort = it => it && {key: it.id, label: it.name, model: it};
+    const toSelectItemShort = it => it && {
+      id: it.id,
+      key: it.id,
+      label: it.name,
+      model: it,
+      description: it.description
+    };
 
-    const all = (allWorkTypes || []).concat(WorkItemsEditForm.WITHOUT_TYPE).map(toSelectItemShort);
-
-    let selectedWorkTypes = filter.workTypes;
-    if (filter.withoutWorkType) {
-      selectedWorkTypes = selectedWorkTypes.concat(WorkItemsEditForm.WITHOUT_TYPE);
-    }
+    const selectedWorkTypes = filter.workTypes || [];
+    const placeholder = filter.workTypes.length ? i18n('Add work type') : i18n('All work types');
 
     return (
-      <div>
-        <Select
-          className="work-items-widget__form-select"
-          size={InputSize.S}
-          data={all}
-          multiple
-          selected={selectedWorkTypes.map(toSelectItemShort)}
-          onChange={this.changeWorkTypes}
-          loading={!allWorkTypes}
-          clear
-          label={i18n('All work types')}
+      <div className="ring-form__group">
+        <TagsInput
+          tags={(selectedWorkTypes || []).map(toSelectItemShort)}
+          maxPopupHeight={150}
+          dataSource={getWorkItemsOptions}
+          onAddTag={this.onAddWorkType}
+          onRemoveTag={this.onRemoveWorkType}
+          filter={{fn: saveClearOptionAtTheTop}}
+          placeholder={placeholder}
         />
       </div>
     );
+
+    function getWorkItemsOptions() {
+      const options = [];
+      if ((filter.workTypes || []).length) {
+        options.push(WorkItemsEditForm.getAllTypesOption());
+        options.push({
+          rgItemType: List.ListProps.Type.SEPARATOR
+        });
+      }
+      options.push(WorkItemsEditForm.getWithoutTypeOption());
+      return options.concat((allWorkTypes || []).map(toSelectItemShort));
+    }
+
+    function saveClearOptionAtTheTop(tag, query) {
+      return tag.id === WorkItemsEditForm.getAllTypesOption().id ||
+        !tag.label || !query || tag.label.toLowerCase().indexOf(query.toLowerCase()) > -1;
+    }
   }
 
   renderDateRange() {
     return (
-      <div>
-        <DatePicker from={filter.startDate} to={filter.endDate} onChange={this.changeDateRange} range/>
+      <div className="ring-form__group">
+        <DatePicker
+          from={filter.startDate}
+          to={filter.endDate}
+          onChange={this.changeDateRange}
+          range
+        />
       </div>
     );
   }
@@ -231,26 +347,46 @@ class WorkItemsEditForm extends React.Component {
   renderAuthorsAndGroups() {
     const selected = toUsers(filter.authors).concat(toGroups(filter.authorGroups));
 
+    const placeholder = (selected || []).length
+      ? i18n('Add user or group')
+      : i18n('All authors');
+
+    const toSelectItemShort = it => it && {
+      key: it.id,
+      label: it.name,
+      model: it,
+      description: it.description
+    };
+
+    const queryUsersAndGroups = this.queryUsersAndGroups;
+
     return (
-      <div>
-        <Select
-          className="work-items-widget__form-select"
-          size={InputSize.S}
-          multiple
-          data={this.state.authors}
+      <div className="ring-form__group">
+        <TagsInput
+          tags={(selected || []).map(toSelectItemShort)}
+          size={TagsInput}
+          maxPopupHeight={150}
+          dataSource={getWorkAuthorsOptions}
+          onAddTag={this.onAddWorkAuthor}
+          onRemoveTag={this.onRemoveWorkAuthor}
           filter={{
-            placeholder: 'Search user or group',
             fn: () => true // disable client filtering
           }}
-          onFilter={this.queryUsersAndGroups}
-          selected={selected.map(toSelectItem)}
-          onChange={this.changeAuthors}
-          loading={!!this.state.request}
-          clear
-          label={i18n('All authors')}
+          placeholder={placeholder}
         />
       </div>
     );
+
+    async function getWorkAuthorsOptions(args) {
+      const options = await queryUsersAndGroups(args);
+      if ((selected || []).length) {
+        options.unshift({
+          rgItemType: List.ListProps.Type.SEPARATOR
+        });
+        options.unshift(WorkItemsEditForm.getAllAuthorsOption());
+      }
+      return options;
+    }
   }
 
   renderFilteringSettings() {
@@ -260,17 +396,17 @@ class WorkItemsEditForm extends React.Component {
     } = this.state;
 
     const contextOptions = (allContexts || []).map(toSelectItem);
-    contextOptions.unshift(WorkItemsEditForm.EVERYTHING_CONTEXT_OPTION);
+    contextOptions.unshift(WorkItemsEditForm.getEverythingContextOption());
 
     if (errorMessage) {
       return (
-        <span>{errorMessage}</span>
+        <div>{errorMessage}</div>
       );
     }
 
     return (
       <div>
-        <div>
+        <div className="ring-form__group">
           <Select
             className="work-items-widget__search-context"
             type={Select.Type.BUTTON}
@@ -309,8 +445,15 @@ class WorkItemsEditForm extends React.Component {
     const {
       youTracks,
       errorMessage,
-      allContexts
+      allContexts,
+      permissions
     } = this.state;
+
+    if (permissions && !permissions.has('JetBrains.YouTrack.READ_WORK_ITEM')) {
+      return (
+        <EmptyWidget smile={EmptyWidgetFaces.ERROR}/>
+      );
+    }
 
     const youTrackServiceToSelectItem = it => it && {
       key: it.id,
@@ -319,8 +462,12 @@ class WorkItemsEditForm extends React.Component {
       model: it
     };
 
+    const selectedYouTrack = (youTracks || []).filter(
+      youTrack => youTrack.id === filter.youTrackId
+    )[0];
+
     return (
-      <div>
+      <ConfigurationForm panelControls={this.renderExportButton()}>
         {
           youTracks.length > 1 &&
           (
@@ -328,7 +475,7 @@ class WorkItemsEditForm extends React.Component {
               size={InputSize.FULL}
               type={Select.Type.BUTTON}
               data={youTracks.map(youTrackServiceToSelectItem)}
-              selected={youTrackServiceToSelectItem(filter.youTrackId)}
+              selected={youTrackServiceToSelectItem(selectedYouTrack)}
               onSelect={this.changeYouTrack}
               filter
               label={i18n('Select YouTrack')}
@@ -343,7 +490,7 @@ class WorkItemsEditForm extends React.Component {
             !allContexts && !errorMessage && <LoaderInline/>
           }
         </div>
-      </div>
+      </ConfigurationForm>
     );
   }
 }
