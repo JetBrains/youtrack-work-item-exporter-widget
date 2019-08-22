@@ -67,7 +67,8 @@ class WorkItemsEditForm extends React.Component {
   static propTypes = {
     syncConfig: PropTypes.func,
     dashboardApi: PropTypes.object,
-    exportActionGetter: PropTypes.func
+    exportActionGetter: PropTypes.func,
+    editable: PropTypes.bool
   };
 
   constructor(props) {
@@ -309,6 +310,7 @@ class WorkItemsEditForm extends React.Component {
           onRemoveTag={this.onRemoveWorkType}
           filter={{fn: saveClearOptionAtTheTop}}
           placeholder={placeholder}
+          disabled={!this.props.editable}
         />
       </div>
     );
@@ -338,6 +340,7 @@ class WorkItemsEditForm extends React.Component {
           from={filter.startDate}
           to={filter.endDate}
           onChange={this.changeDateRange}
+          disabled={!this.props.editable}
           range
         />
       </div>
@@ -373,6 +376,7 @@ class WorkItemsEditForm extends React.Component {
             fn: () => true // disable client filtering
           }}
           placeholder={placeholder}
+          disabled={!this.props.editable}
         />
       </div>
     );
@@ -417,10 +421,11 @@ class WorkItemsEditForm extends React.Component {
             filter
             loading={!allContexts}
             label={i18n('Everything')}
+            disabled={!this.props.editable}
           />
           <div className="work-items-widget__search-query">
             <QueryAssist
-              disabled={this.state.isLoading}
+              disabled={this.state.isLoading || !this.props.editable}
               query={filter.search}
               placeholder={i18n('Type search query')}
               onChange={this.onQueryAssistInputChange}

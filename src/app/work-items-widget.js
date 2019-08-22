@@ -35,7 +35,8 @@ class WorkItemsWidget extends React.Component {
   static propTypes = {
     dashboardApi: PropTypes.object,
     configWrapper: PropTypes.object,
-    registerWidgetApi: PropTypes.func
+    registerWidgetApi: PropTypes.func,
+    editable: PropTypes.bool
   };
 
   componentDidMount() {
@@ -76,7 +77,9 @@ class WorkItemsWidget extends React.Component {
   }
 
   syncConfiguration = async () => {
-    filter.sync(this.props);
+    if (this.props.editable) {
+      filter.sync(this.props);
+    }
     this.setState({hackToForceRedrawDomRightNow: false});
   };
 
@@ -99,6 +102,7 @@ class WorkItemsWidget extends React.Component {
           syncConfig={this.syncConfiguration}
           dashboardApi={this.props.dashboardApi}
           exportActionGetter={this.onExport}
+          editable={this.props.editable}
         />
       );
     }
