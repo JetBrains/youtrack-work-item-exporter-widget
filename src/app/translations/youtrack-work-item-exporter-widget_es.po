@@ -11,22 +11,52 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: Spanish\n"
 "Language: es_ES\n"
-"PO-Revision-Date: 2019-08-14 12:55\n"
+"PO-Revision-Date: 2019-08-22 11:16\n"
 
-#: src/app/work-items-edit-form.js:250
+#: src/app/work-items-edit-form.js:354
+msgid "Add user or group"
+msgstr ""
+
+#: src/app/work-items-edit-form.js:301
+msgid "Add work type"
+msgstr ""
+
+#: src/app/work-items-edit-form.js:355
+#: src/app/work-items-edit-form.js:63
 msgid "All authors"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:217
+#: src/app/work-items-edit-form.js:52
+msgid "All types"
+msgstr ""
+
+#: src/app/work-items-edit-form.js:301
 msgid "All work types"
 msgstr ""
 
-#: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:52
+#: src/app/work-items-edit-form.js:277
+msgid "CSV"
+msgstr ""
+
+#: src/app/work-items-widget.js:92
+msgid "Can't export data: {{error}}"
+msgstr ""
+
+#: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
 msgstr ""
 
+#: src/app/work-items-edit-form.js:53
+#: src/app/work-items-edit-form.js:64
+msgid "Clear selected"
+msgstr ""
+
 #: src/app/work-items-edit-form.js:283
-#: src/app/work-items-edit-form.js:46
+msgid "EXCEL"
+msgstr ""
+
+#: src/app/work-items-edit-form.js:423
+#: src/app/work-items-edit-form.js:58
 msgid "Everything"
 msgstr ""
 
@@ -38,19 +68,23 @@ msgstr ""
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 msgstr ""
 
+#: src/app/work-items-edit-form.js:267
+msgid "No work items types loaded"
+msgstr ""
+
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
 msgstr "¡Uy! Algo ha salido mal..."
 
-#: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:45
+#: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:334
+#: src/app/work-items-edit-form.js:486
 msgid "Select YouTrack"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:96
+#: src/app/work-items-edit-form.js:118
 msgid "Selected YouTrack service is not available"
 msgstr ""
 
@@ -62,7 +96,7 @@ msgstr ""
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:289
+#: src/app/work-items-edit-form.js:430
 msgid "Type search query"
 msgstr ""
 
@@ -73,6 +107,10 @@ msgstr ""
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
 msgstr "El widget se actualiza cada {{minutesCount}} minutos"
+
+#: src/app/work-items-edit-form.js:47
+msgid "Without type"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
