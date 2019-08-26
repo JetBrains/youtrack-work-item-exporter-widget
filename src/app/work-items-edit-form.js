@@ -144,10 +144,12 @@ class WorkItemsEditForm extends React.Component {
     // eslint-disable-next-line max-len
     this.underlineAndSuggestDebouncer.decorate(() => underlineAndSuggest(this.fetchYouTrack, query, caret, folder));
 
-  queryAssistDataSource = async queryAssistModel =>
+  queryAssistDataSource = async queryAssistModel => {
+    filter.search = queryAssistModel.query;
     await this.underlineAndSuggest(
       queryAssistModel.query, queryAssistModel.caret, this.state.context
     );
+  };
 
   changeSearchContext = selected => {
     filter.context = selected.model;
