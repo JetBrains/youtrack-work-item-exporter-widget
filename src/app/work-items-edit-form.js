@@ -126,6 +126,7 @@ class WorkItemsEditForm extends React.Component {
 
   changeSearch = search => {
     filter.query = search;
+    this.props.syncConfig();
     this.setState({search, errorMessage: ''});
   };
 
