@@ -5,8 +5,8 @@ const FORMAT = 'YYYY-MM-DD';
 
 class WorkItemsFilter {
 
-  @observable search = null;
-  @observable context = null;
+  @observable query = null;
+  @observable folder = null;
 
   @observable withoutWorkType = false;
   @observable workTypes = [];
@@ -23,8 +23,8 @@ class WorkItemsFilter {
     try {
       const filter = props.configWrapper.getFieldValue('filter');
       const WEEK_AGO = -7;
-      this.search = filter.search;
-      this.context = filter.context;
+      this.query = filter.query;
+      this.folder = filter.folder;
 
       this.workTypes = filter.workTypes || [];
       this.withoutWorkType = filter.withoutWorkType || false;
@@ -45,7 +45,7 @@ class WorkItemsFilter {
   }
 
   toConfig() {
-    const context = this.context;
+    const context = this.folder;
 
     function formatDate(date) {
       return date ? format(date, FORMAT) : null;
@@ -54,8 +54,8 @@ class WorkItemsFilter {
     const hasId = it => it.id;
 
     return {
-      context: context ? {id: context.id, name: context.name, $type: context.$type} : null,
-      search: this.search,
+      folder: context ? {id: context.id, name: context.name, $type: context.$type} : null,
+      query: this.query,
       workTypes: (this.workTypes || []).map(type => type && {id: type.id, name: type.name}),
       withoutWorkType: this.withoutWorkType,
 

@@ -125,7 +125,7 @@ class WorkItemsEditForm extends React.Component {
   }
 
   changeSearch = search => {
-    filter.search = search;
+    filter.query = search;
     this.setState({search, errorMessage: ''});
   };
 
@@ -147,11 +147,11 @@ class WorkItemsEditForm extends React.Component {
 
   queryAssistDataSource = async queryAssistModel =>
     await this.underlineAndSuggest(
-      queryAssistModel.query, queryAssistModel.caret, this.state.context
+      queryAssistModel.query, queryAssistModel.caret, this.state.folder
     );
 
   changeSearchContext = selected => {
-    filter.context = selected.model;
+    filter.folder = selected.model;
     this.props.syncConfig();
   };
 
@@ -417,7 +417,7 @@ class WorkItemsEditForm extends React.Component {
             type={Select.Type.BUTTON}
             size={InputSize.S}
             data={contextOptions}
-            selected={toSelectItem(filter.context)}
+            selected={toSelectItem(filter.folder)}
             onSelect={this.changeSearchContext}
             filter
             loading={!allContexts}
@@ -427,7 +427,7 @@ class WorkItemsEditForm extends React.Component {
           <div className="work-items-widget__search-query">
             <QueryAssist
               disabled={this.state.isLoading || !this.props.editable}
-              query={filter.search}
+              query={filter.query}
               placeholder={i18n('Type search query')}
               onChange={this.onQueryAssistInputChange}
               dataSource={this.queryAssistDataSource}
