@@ -458,7 +458,7 @@ class WorkItemsEditForm extends React.Component {
 
     if (permissions && !permissions.has('JetBrains.YouTrack.READ_WORK_ITEM')) {
       return (
-        <EmptyWidget smile={EmptyWidgetFaces.ERROR}/>
+        <EmptyWidget face={EmptyWidgetFaces.ERROR} message={i18n('You do not have permission to read work items.')}/>
       );
     }
 
