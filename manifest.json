@@ -6,11 +6,11 @@
   "applicationName": "YouTrack",
   "author": "YouTrack Team",
   "dependencies": {
-    "YouTrack": ">=2019.1",
+    "YouTrack": ">=2019.2",
     "Hub": ">2019.1.11587"
   },
   "products": {
-    "YouTrack": ">=2019.1",
+    "YouTrack": ">=2019.2",
     "Hub": ">2019.1.11587"
   },
   "capabilities": {
