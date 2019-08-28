@@ -11,17 +11,17 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
-"PO-Revision-Date: 2019-08-22 20:17\n"
+"PO-Revision-Date: 2019-08-28 09:09\n"
 
-#: src/app/work-items-edit-form.js:354
+#: src/app/work-items-edit-form.js:356
 msgid "Add user or group"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:301
+#: src/app/work-items-edit-form.js:303
 msgid "Add work type"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:355
+#: src/app/work-items-edit-form.js:357
 #: src/app/work-items-edit-form.js:63
 msgid "All authors"
 msgstr ""
@@ -30,11 +30,11 @@ msgstr ""
 msgid "All types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:301
+#: src/app/work-items-edit-form.js:303
 msgid "All work types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:277
+#: src/app/work-items-edit-form.js:279
 msgid "CSV"
 msgstr ""
 
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Clear selected"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:283
+#: src/app/work-items-edit-form.js:285
 msgid "EXCEL"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:423
+#: src/app/work-items-edit-form.js:425
 #: src/app/work-items-edit-form.js:58
 msgid "Everything"
 msgstr ""
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:267
+#: src/app/work-items-edit-form.js:269
 msgid "No work items types loaded"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr "К сожалению, возникла какая-то проблема
 msgid "Save"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:486
+#: src/app/work-items-edit-form.js:488
 msgid "Select YouTrack"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:430
+#: src/app/work-items-edit-form.js:432
 msgid "Type search query"
 msgstr ""
 
@@ -110,6 +110,10 @@ msgstr "Виджет обновляется раз в {{minutesCount}} мин"
 
 #: src/app/work-items-edit-form.js:47
 msgid "Without type"
+msgstr ""
+
+#: src/app/work-items-edit-form.js:461
+msgid "You do not have permission to read work items."
 msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
