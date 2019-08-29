@@ -11,30 +11,30 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2019-08-28 09:09\n"
+"PO-Revision-Date: 2019-08-29 15:00\n"
 
-#: src/app/work-items-edit-form.js:356
+#: src/app/work-items-edit-form.js:369
 msgid "Add user or group"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:303
+#: src/app/work-items-edit-form.js:314
 msgid "Add work type"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:357
-#: src/app/work-items-edit-form.js:63
+#: src/app/work-items-edit-form.js:370
+#: src/app/work-items-edit-form.js:64
 msgid "All authors"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:52
+#: src/app/work-items-edit-form.js:53
 msgid "All types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:303
+#: src/app/work-items-edit-form.js:314
 msgid "All work types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:279
+#: src/app/work-items-edit-form.js:286
 msgid "CSV"
 msgstr ""
 
@@ -46,17 +46,17 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:53
-#: src/app/work-items-edit-form.js:64
+#: src/app/work-items-edit-form.js:54
+#: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:285
+#: src/app/work-items-edit-form.js:292
 msgid "EXCEL"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:425
-#: src/app/work-items-edit-form.js:58
+#: src/app/work-items-edit-form.js:438
+#: src/app/work-items-edit-form.js:59
 msgid "Everything"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:269
+#: src/app/work-items-edit-form.js:276
 msgid "No work items types loaded"
 msgstr ""
 
@@ -80,11 +80,11 @@ msgstr "Entschuldigung! Etwas ist schiefgegangen."
 msgid "Save"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:488
+#: src/app/work-items-edit-form.js:501
 msgid "Select YouTrack"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:118
+#: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:432
+#: src/app/work-items-edit-form.js:445
 msgid "Type search query"
 msgstr ""
 
@@ -109,10 +109,11 @@ msgid "Widget refreshes every {{minutesCount}} minutes"
 msgstr "Widget wird alle {{minutesCount}} Minuten aktualisiert"
 
 #: src/app/work-items-edit-form.js:47
+#: src/app/work-items-edit-form.js:48
 msgid "Without type"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:461
+#: src/app/work-items-edit-form.js:474
 msgid "You do not have permission to read work items."
 msgstr ""
 
