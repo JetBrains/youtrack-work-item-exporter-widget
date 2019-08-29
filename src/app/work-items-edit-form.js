@@ -44,7 +44,8 @@ class WorkItemsEditForm extends React.Component {
 
   static getWithoutTypeOption = () => ({
     id: 'without_type',
-    label: i18n('Without type')
+    label: i18n('Without type'),
+    name: i18n('Without type')
   });
 
   static getAllTypesOption = () => ({
@@ -159,6 +160,8 @@ class WorkItemsEditForm extends React.Component {
   onAddWorkType = ({tag}) => {
     if (tag.id === WorkItemsEditForm.getAllTypesOption().id) {
       filter.workTypes = [];
+    } else if (tag.id === WorkItemsEditForm.getWithoutTypeOption().id) {
+      filter.withoutWorkType = true;
     } else if (tag.model) {
       filter.workTypes = (filter.workTypes || []).concat([tag.model]);
     }
@@ -166,7 +169,11 @@ class WorkItemsEditForm extends React.Component {
   };
 
   onRemoveWorkType = ({tag}) => {
-    filter.workTypes = (filter.workTypes || []).filter(type => type.id !== tag.id);
+    if (tag.id === WorkItemsEditForm.getWithoutTypeOption().id) {
+      filter.withoutWorkType = false;
+    } else {
+      filter.workTypes = (filter.workTypes || []).filter(type => type.id !== tag.id);
+    }
     this.props.syncConfig();
   };
 
@@ -299,7 +306,11 @@ class WorkItemsEditForm extends React.Component {
       description: it.description
     };
 
-    const selectedWorkTypes = filter.workTypes || [];
+    let selectedWorkTypes = filter.workTypes || [];
+    if (filter.withoutWorkType) {
+      selectedWorkTypes = selectedWorkTypes.concat([WorkItemsEditForm.getWithoutTypeOption()]);
+    }
+
     const placeholder = filter.workTypes.length ? i18n('Add work type') : i18n('All work types');
 
     return (
@@ -325,7 +336,9 @@ class WorkItemsEditForm extends React.Component {
           rgItemType: List.ListProps.Type.SEPARATOR
         });
       }
-      options.push(WorkItemsEditForm.getWithoutTypeOption());
+      if (!filter.withoutWorkType) {
+        options.push(WorkItemsEditForm.getWithoutTypeOption());
+      }
       return options.concat((allWorkTypes || []).map(toSelectItemShort));
     }
 
