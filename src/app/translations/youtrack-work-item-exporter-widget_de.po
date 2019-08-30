@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2019-08-30 10:14\n"
+"PO-Revision-Date: 2019-08-30 12:57\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "CSV"
 msgstr ""
 
-#: src/app/work-items-widget.js:92
+#: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
 msgstr ""
 
