@@ -11,17 +11,17 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2019-08-29 15:00\n"
+"PO-Revision-Date: 2019-08-30 10:14\n"
 
-#: src/app/work-items-edit-form.js:369
+#: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:314
+#: src/app/work-items-edit-form.js:315
 msgid "Add work type"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:370
+#: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
 msgstr ""
@@ -30,11 +30,11 @@ msgstr ""
 msgid "All types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:314
+#: src/app/work-items-edit-form.js:315
 msgid "All work types"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:286
+#: src/app/work-items-edit-form.js:287
 msgid "CSV"
 msgstr ""
 
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Clear selected"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:292
+#: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:438
+#: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
 msgstr ""
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:276
+#: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr "Entschuldigung! Etwas ist schiefgegangen."
 msgid "Save"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:501
+#: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:445
+#: src/app/work-items-edit-form.js:446
 msgid "Type search query"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgstr "Widget wird alle {{minutesCount}} Minuten aktualisiert"
 msgid "Without type"
 msgstr ""
 
-#: src/app/work-items-edit-form.js:474
+#: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
 msgstr ""
 
