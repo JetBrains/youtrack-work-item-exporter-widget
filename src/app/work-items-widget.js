@@ -39,6 +39,12 @@ class WorkItemsWidget extends React.Component {
     editable: PropTypes.bool
   };
 
+  constructor(props) {
+    super(props);
+
+    props.registerWidgetApi({});
+  }
+
   componentDidMount() {
     this.initialize(this.props.dashboardApi);
   }
