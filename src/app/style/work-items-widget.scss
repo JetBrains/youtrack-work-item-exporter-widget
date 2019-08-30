@@ -4,11 +4,11 @@
   color: var(--ring-text-color);
 
   &__filters-list {
-    min-height: 4 * $ring-unit;
-    margin-bottom: 6 * $ring-unit;
+    min-height: calc(4 * var(--ring-unit));
+    margin-bottom: calc(6 * var(--ring-unit));
   }
 
-  $search-context-width: $ring-unit * 12;
+  $search-context-width: calc(var(--ring-unit) * 12);
 
   &__search-context {
     display: inline-block;

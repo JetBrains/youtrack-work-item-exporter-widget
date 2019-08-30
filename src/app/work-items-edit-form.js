@@ -10,11 +10,11 @@ import HttpErrorHandler from '@jetbrains/hub-widget-ui/dist/http-error-handler';
 import ConfigurationForm from '@jetbrains/hub-widget-ui/dist/configuration-form';
 import Permissions from '@jetbrains/hub-widget-ui/dist/permissions';
 import ButtonGroup from '@jetbrains/ring-ui/components/button-group/button-group';
+import Button from '@jetbrains/ring-ui/components/button/button';
+import DatePicker from '@jetbrains/ring-ui/components/date-picker/date-picker';
 import List from '@jetbrains/ring-ui/components/list/list';
 import EmptyWidget, {EmptyWidgetFaces} from '@jetbrains/hub-widget-ui/dist/empty-widget';
 import '@jetbrains/ring-ui/components/form/form.scss';
-
-import {Button, DatePicker} from '@jetbrains/ring-ui'; // theme css file
 
 import ServiceResource from './components/service-resource';
 import DebounceDecorator from './debounceDecorator';
@@ -160,6 +160,7 @@ class WorkItemsEditForm extends React.Component {
   onAddWorkType = ({tag}) => {
     if (tag.id === WorkItemsEditForm.getAllTypesOption().id) {
       filter.workTypes = [];
+      filter.withoutWorkType = false;
     } else if (tag.id === WorkItemsEditForm.getWithoutTypeOption().id) {
       filter.withoutWorkType = true;
     } else if (tag.model) {
@@ -330,7 +331,7 @@ class WorkItemsEditForm extends React.Component {
 
     function getWorkItemsOptions() {
       const options = [];
-      if ((filter.workTypes || []).length) {
+      if ((filter.workTypes || []).length || filter.withoutWorkType) {
         options.push(WorkItemsEditForm.getAllTypesOption());
         options.push({
           rgItemType: List.ListProps.Type.SEPARATOR
