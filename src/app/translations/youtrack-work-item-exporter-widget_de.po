@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2019-09-09 12:03\n"
+"PO-Revision-Date: 2019-09-11 20:14\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
