@@ -1,6 +1,6 @@
 {
   "key": "youtrack-work-items-export",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "name": "Work Item Exporter",
   "description": "This widget provides an interface for exporting work item data from YouTrack. You can add this widget to dashboards and project overview pages in your YouTrack or Hub installation.",
   "applicationName": "YouTrack",
