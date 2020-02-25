@@ -4,73 +4,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: youtrackjetbrains\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Generator: crowdin.com\n"
 "X-Crowdin-Project: youtrackjetbrains\n"
 "X-Crowdin-Language: ru\n"
 "X-Crowdin-File: /widgets/youtrack-work-item-exporter-widget/default.pot\n"
-"Last-Translator: JetBrains (jetbrains)\n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
-"PO-Revision-Date: 2019-09-09 21:04\n"
+"PO-Revision-Date: 2020-02-05 21:06\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
-msgstr ""
+msgstr "Добавить пользователей или группу"
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr ""
+msgstr "Добавить единицу работы"
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr ""
+msgstr "Все авторы"
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr ""
+msgstr "Все типы"
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr ""
+msgstr "Все типы работы"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr ""
+msgstr "Невозможно экспортировать данные: {{error}}"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr ""
+msgstr "Сбросить выбор"
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr ""
+msgstr "EXCEL"
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
-msgstr ""
+msgstr "Все"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:116
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr ""
+msgstr "январь|февраль|март|апрель|май|июнь|июль|август|сентябрь|октябрь|ноябрь|декабрь"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr ""
+msgstr "янв|фев|мар|апр|май|июн|июл|авг|сен|окт|ноя|дек"
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr ""
+msgstr "Отсутствуют загруженные единицы работы"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
@@ -78,31 +76,31 @@ msgstr "К сожалению, возникла какая-то проблема
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr ""
+msgstr "Выберите YouTrack"
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
-msgstr ""
+msgstr "Выбранный сервис YouTrack недоступен"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:114
 msgid "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr ""
+msgstr "воскресенье|понедельник|вторник|среда|четверг|пятница|суббота"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:113
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr ""
+msgstr "вс|пн|вт|ср|чт|пт|сб"
 
 #: src/app/work-items-edit-form.js:446
 msgid "Type search query"
-msgstr ""
+msgstr "Введите поисковый запрос"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:69
 msgid "Widget refreshes every minute"
-msgstr ""
+msgstr "Виджет обновляется раз в минуту"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
@@ -111,15 +109,15 @@ msgstr "Виджет обновляется раз в {{minutesCount}} мин"
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr ""
+msgstr "Без типа"
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
-msgstr ""
+msgstr "У вас нет разрешений на чтение единиц работы."
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr ""
+msgstr "ДП|ПП"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"

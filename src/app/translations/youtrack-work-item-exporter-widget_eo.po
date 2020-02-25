@@ -5,121 +5,121 @@ msgstr ""
 "Project-Id-Version: youtrackjetbrains\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Crowdin-Project: youtrackjetbrains\n"
-"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-Language: eo\n"
 "X-Crowdin-File: /widgets/youtrack-work-item-exporter-widget/default.pot\n"
-"Language-Team: Spanish\n"
-"Language: es_ES\n"
-"PO-Revision-Date: 2020-02-05 21:05\n"
+"Language-Team: Esperanto\n"
+"Language: eo_UY\n"
+"PO-Revision-Date: 2019-12-20 15:00\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
-msgstr "Añadir usuario o grupo"
+msgstr "crwdns2729504:0crwdne2729504:0"
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr "Añadir tipo de trabajo"
+msgstr "crwdns2729506:0crwdne2729506:0"
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr "Todos los autores"
+msgstr "crwdns2722348:0crwdne2722348:0"
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr "Todos los tipos"
+msgstr "crwdns2729508:0crwdne2729508:0"
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr "Todos los tipos de trabajo"
+msgstr "crwdns2722350:0crwdne2722350:0"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr "CSV"
+msgstr "crwdns2729510:0crwdne2729510:0"
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr "No se pueden exportar los datos: {{error}}"
+msgstr "crwdns2729512:0{{error}}crwdne2729512:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "crwdns2722352:0crwdne2722352:0"
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr "Borrar selección"
+msgstr "crwdns2729514:0crwdne2729514:0"
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr "EXCEL"
+msgstr "crwdns2729516:0crwdne2729516:0"
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
-msgstr "Todo"
+msgstr "crwdns2722354:0crwdne2722354:0"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:116
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "Enero|Febrero|Marzo|Abril|Mayo|Junio|Julio|Agosto|Septiembre|Octubre|Noviembre|Diciembre"
+msgstr "crwdns2722356:0crwdne2722356:0"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr "Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Sep|Oct|Nov|Dic"
+msgstr "crwdns2722358:0crwdne2722358:0"
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr "Ningún tipo de elemento de trabajo cargado"
+msgstr "crwdns2729518:0crwdne2729518:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
-msgstr "¡Uy! Algo ha salido mal..."
+msgstr "crwdns2722360:0crwdne2722360:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
-msgstr "Guardar"
+msgstr "crwdns2722362:0crwdne2722362:0"
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr "Seleccionar YouTrack"
+msgstr "crwdns2722364:0crwdne2722364:0"
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
-msgstr "El servicio de YouTrack seleccionado no está disponible"
+msgstr "crwdns2722366:0crwdne2722366:0"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:114
 msgid "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr "Domingo|Lunes|Martes|Miércoles|Jueves|Viernes|Sábado"
+msgstr "crwdns2722368:0crwdne2722368:0"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:113
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr "Dom|Lun|Mar|Mié|Jue|Vie|Sáb"
+msgstr "crwdns2722370:0crwdne2722370:0"
 
 #: src/app/work-items-edit-form.js:446
 msgid "Type search query"
-msgstr "Escriba la consulta de búsqueda"
+msgstr "crwdns2722372:0crwdne2722372:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:69
 msgid "Widget refreshes every minute"
-msgstr "El widget se actualiza cada minuto"
+msgstr "crwdns2722374:0crwdne2722374:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr "El widget se actualiza cada {{minutesCount}} minutos"
+msgstr "crwdns2722376:0{{minutesCount}}crwdne2722376:0"
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr "Sin tipo"
+msgstr "crwdns2729520:0crwdne2729520:0"
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
-msgstr "No tiene permiso para leer elementos de trabajo."
+msgstr "crwdns2738274:0crwdne2738274:0"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr "am|pm"
+msgstr "crwdns2722378:0crwdne2722378:0"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr "{{minutesCount}} min"
+msgstr "crwdns2722380:0{{minutesCount}}crwdne2722380:0"
 
