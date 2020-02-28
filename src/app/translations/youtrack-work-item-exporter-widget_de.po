@@ -9,7 +9,7 @@ msgstr ""
 "X-Crowdin-File: /widgets/youtrack-work-item-exporter-widget/default.pot\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
-"PO-Revision-Date: 2020-02-05 21:05\n"
+"PO-Revision-Date: 2020-02-25 17:28\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
