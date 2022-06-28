@@ -11,117 +11,117 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
-"PO-Revision-Date: 2020-11-10 01:14\n"
+"PO-Revision-Date: 2022-06-28 20:46\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
-msgstr ""
+msgstr "Aggiungi un utente o un gruppo"
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr ""
+msgstr "Aggiungi il tipo di lavoro"
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr ""
+msgstr "Tutti gli autori"
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr ""
+msgstr "Tutti i tipi"
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr ""
+msgstr "Tutti i tipi di lavoro"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr ""
+msgstr "Impossibile esportare i dati: {{error}}"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr ""
+msgstr "Cancella selezionati"
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr ""
+msgstr "EXCEL"
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
-msgstr ""
+msgstr "Qualsiasi"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:116
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr ""
+msgstr "Gennaio|Febbraio|Marzo|Aprile|Maggio|Giugno|Luglio|Agosto|Settembre|Ottobre|Novembre|Dicembre"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr ""
+msgstr "Gen|Feb|Mar|Apr|Mag|Giu|Lug|Ago|Set|Ott|Nov|Dic"
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr ""
+msgstr "Nessun tipo di elementi di lavoro caricati"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
-msgstr ""
+msgstr "Oops! Qualcosa è andato storto..."
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
-msgstr ""
+msgstr "Salva"
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr ""
+msgstr "Seleziona YouTrack"
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
-msgstr ""
+msgstr "Il servizio YouTrack selezionato non è disponibile"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:114
 msgid "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr ""
+msgstr "Domenica|Lunedi|Martedi|Mercoledi|Giovedi|Venerdi|Sabato"
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:113
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr ""
+msgstr "Dom|Lun|Mar|Mer|Gio|Ven|Sab"
 
 #: src/app/work-items-edit-form.js:446
 msgid "Type search query"
-msgstr ""
+msgstr "Digitare la query di ricerca"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:69
 msgid "Widget refreshes every minute"
-msgstr ""
+msgstr "Il widget si aggiorna ogni minuto"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr ""
+msgstr "Il widget si aggiorna ogni {{minutesCount}} minuti"
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr ""
+msgstr "Senza tipo"
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
-msgstr ""
+msgstr "Non hai l'autorizzazione per leggere gli elementi di lavoro."
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr ""
+msgstr "am|pm"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr ""
+msgstr "{{minutesCount}} min"
 

@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
-"PO-Revision-Date: 2020-11-10 01:14\n"
+"PO-Revision-Date: 2022-06-28 20:40\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -123,5 +123,5 @@ msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr ""
+msgstr "{{minutesCount}} דקות"
 

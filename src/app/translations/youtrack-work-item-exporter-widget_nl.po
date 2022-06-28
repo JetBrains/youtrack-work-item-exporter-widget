@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
-"PO-Revision-Date: 2020-11-10 01:14\n"
+"PO-Revision-Date: 2022-06-27 17:34\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"

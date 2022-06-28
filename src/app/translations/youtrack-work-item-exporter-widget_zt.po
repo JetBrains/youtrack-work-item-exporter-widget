@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Chinese Traditional\n"
 "Language: zh_TW\n"
-"PO-Revision-Date: 2020-11-10 01:14\n"
+"PO-Revision-Date: 2022-06-28 06:04\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr ""
+msgstr "小工具每 {{minutesCount}} 分鐘重新整理一次"
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
@@ -123,5 +123,5 @@ msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr ""
+msgstr "{{minutesCount}} 分鐘"
 

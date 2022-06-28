@@ -3,125 +3,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: youtrack-custom-localization\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Crowdin-Project: youtrack-custom-localization\n"
 "X-Crowdin-Project-ID: 309400\n"
-"X-Crowdin-Language: cs\n"
+"X-Crowdin-Language: ar\n"
 "X-Crowdin-File: /widgets/youtrack-work-item-exporter-widget/default.pot\n"
 "X-Crowdin-File-ID: 266866\n"
-"Language-Team: Czech\n"
-"Language: cs_CZ\n"
-"PO-Revision-Date: 2022-06-27 17:33\n"
+"Language-Team: Arabic\n"
+"Language: ar_SA\n"
+"PO-Revision-Date: 2022-03-31 11:33\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
-msgstr "Přidat uživatele do skupiny"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr "Přidat typ práce"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr "Všichni autoři"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr "Všechny typy"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr "Všechny typy práce"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr "CSV"
+msgstr ""
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr "Nelze exportovat data: {{error}}"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr "Smazat vybrané"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr "EXCEL"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
-msgstr "Vše"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:116
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "Leden|Únor|Březen|Duben|Květen|Červen|Červenec|Srpen|Září|Říjen|Listopad|Prosinec"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr "Led|Úno|Bře|Dub|Kvě|Čer|Čvc|Srp|Zář|Říj|Lis|Pro"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr "Nebyly načteny žádné typy pracovních položek"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
-msgstr "Jejda! Něco se pokazilo…"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
-msgstr "Uložit"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr "Vyberte YouTrack"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
-msgstr "Vybraná služba YouTrack není k dispozici"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:114
 msgid "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr "Neděle|Pondělí|Úterý|Středa|Čtvrtek|Pátek|Sobota"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:113
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr "Ne|Po|Út|St|Čt|Pá|So"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:446
 msgid "Type search query"
-msgstr "Zadejte vyhledávací dotaz"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:69
 msgid "Widget refreshes every minute"
-msgstr "Widget se aktualizuje každou minutu"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr "Widget se aktualizuje každých {{minutesCount}} minut"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr "Bez typu"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
-msgstr "K zobrazení výkazů práce nemáte oprávnění."
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr "dopol|odpol"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr "{{minutesCount}} min"
+msgstr ""
 

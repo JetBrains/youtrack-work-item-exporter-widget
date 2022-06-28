@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2020-11-10 01:14\n"
+"PO-Revision-Date: 2022-06-27 17:34\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -19,7 +19,7 @@ msgstr "Dodaj użytkowników lub grupy"
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr ""
+msgstr "Dodaj typ pracy"
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
@@ -32,7 +32,7 @@ msgstr ""
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr ""
+msgstr "Wszystkie rodzaje pracy"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
