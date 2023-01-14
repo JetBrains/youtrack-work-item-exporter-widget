@@ -91,7 +91,7 @@
     "sinon": "2.3.5",
     "sinon-chai": "2.11.0",
     "stylelint": "7.11.1",
-    "webpack-cli": "3.2.1",
+    "webpack-cli": "3.3.12",
     "xvfb-maybe": "0.2.1",
     "yo": "^3.1.0"
   },
