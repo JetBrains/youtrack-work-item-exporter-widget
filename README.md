@@ -1,6 +1,8 @@
 # YouTrack Work Item Exporter Widget
 [![Build Status][ci-img]][ci-bt] [![JetBrains team project](https://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
+[Code of Conduct](https://github.com/JetBrains?#code-of-conduct)
+
 This widget provides an interface for exporting work item data from YouTrack. You can add this widget to dashboards and project overview pages in your YouTrack or Hub installation.
 
 ## Getting Started
