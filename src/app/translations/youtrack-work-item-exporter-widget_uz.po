@@ -3,125 +3,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: youtrack-custom-localization\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Crowdin-Project: youtrack-custom-localization\n"
 "X-Crowdin-Project-ID: 309400\n"
-"X-Crowdin-Language: tr\n"
+"X-Crowdin-Language: uz\n"
 "X-Crowdin-File: /widgets/youtrack-work-item-exporter-widget/default.pot\n"
 "X-Crowdin-File-ID: 266866\n"
-"Language-Team: Turkish\n"
-"Language: tr_TR\n"
+"Language-Team: Uzbek\n"
+"Language: uz_UZ\n"
 "PO-Revision-Date: 2023-08-22 12:21\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
-msgstr "Kullanıcı veya grup ekle"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr "İş türü ekle"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr "Tüm yazarlar"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr "Tüm türler"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr "Tüm iş türleri"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr "CSV"
+msgstr ""
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr "Veriler dışa aktarılamıyor: {{error}}"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr "İptal"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr "Seçilenleri temizle"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr "EXCEL"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
 msgid "Everything"
-msgstr "Her şey"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:116
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr "Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr "Oca|Şub|Mar|Nis|May|Haz|Tem|Ağu|Eyl|Eki|Kas|Ara"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr "Yüklü iş ögesi türü yok"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
-msgstr "Hay aksi! Bir şeyler ters gitti..."
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
-msgstr "Kaydet"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr "YouTrack'i seçin"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
-msgstr "Seçili YouTrack hizmeti kullanılamıyor"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:114
 msgid "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday"
-msgstr "Pazar|Pazartesi|Salı|Çarşamba|Perşembe|Cuma|Cumartesi"
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:113
 msgid "Sun|Mon|Tue|Wed|Thu|Fri|Sat"
-msgstr "Paz|Pzt|Sal|Çrş|Prş|Cum|Cmt"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:446
 msgid "Type search query"
-msgstr "Arama sorgusu girin"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:69
 msgid "Widget refreshes every minute"
-msgstr "Widget her dakika yenilenir"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr "Widget {{minutesCount}} dakikada bir yenilenir"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr "Türsüz"
+msgstr ""
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
-msgstr "İş ögelerini okuma izniniz yok."
+msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr "öö|ös"
+msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"
-msgstr "{{minutesCount}} dk"
+msgstr ""
 

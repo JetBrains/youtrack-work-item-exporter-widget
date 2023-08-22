@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Hebrew\n"
 "Language: he_IL\n"
-"PO-Revision-Date: 2022-06-28 22:28\n"
+"PO-Revision-Date: 2023-08-22 12:20\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -19,24 +19,24 @@ msgstr "הוסף משתמש או קבוצה"
 
 #: src/app/work-items-edit-form.js:315
 msgid "Add work type"
-msgstr ""
+msgstr "הוספת סוג עבודה"
 
 #: src/app/work-items-edit-form.js:371
 #: src/app/work-items-edit-form.js:64
 msgid "All authors"
-msgstr ""
+msgstr "כל המחברים"
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr ""
+msgstr "כל הסוגים"
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
-msgstr ""
+msgstr "כל סוגי העבודה"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
@@ -44,16 +44,16 @@ msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
-msgstr ""
+msgstr "ביטול"
 
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr ""
+msgstr "לנקות את המסננים שנבחרו"
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
-msgstr ""
+msgstr "EXCEL"
 
 #: src/app/work-items-edit-form.js:439
 #: src/app/work-items-edit-form.js:59
@@ -66,15 +66,15 @@ msgstr "ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|או�
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:115
 msgid "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec"
-msgstr ""
+msgstr "ינו'|פבר'|מרץ|אפר'|מאי|יונ'|יול'|אוג'|ספט'|אוק'|נוב'|דצמ'"
 
 #: src/app/work-items-edit-form.js:277
 msgid "No work items types loaded"
-msgstr ""
+msgstr "לא נטענו סוגי פריטי עבודה"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/http-error-handler/http-error-handler.js:4
 msgid "Oops! Something went wrong..."
-msgstr ""
+msgstr "אופס! משהו השתבש..."
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:47
 msgid "Save"
@@ -82,7 +82,7 @@ msgstr "שמור"
 
 #: src/app/work-items-edit-form.js:502
 msgid "Select YouTrack"
-msgstr ""
+msgstr "בחירת מופע YouTrack"
 
 #: src/app/work-items-edit-form.js:119
 msgid "Selected YouTrack service is not available"
@@ -106,12 +106,12 @@ msgstr ""
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:70
 msgid "Widget refreshes every {{minutesCount}} minutes"
-msgstr ""
+msgstr "הווידג'ט מתרענן כל {{minutesCount}} דקות"
 
 #: src/app/work-items-edit-form.js:47
 #: src/app/work-items-edit-form.js:48
 msgid "Without type"
-msgstr ""
+msgstr "ללא סוג"
 
 #: src/app/work-items-edit-form.js:475
 msgid "You do not have permission to read work items."
@@ -119,7 +119,7 @@ msgstr ""
 
 #: node_modules/hub-dashboard-addons/components/localization/src/localization.js:117
 msgid "am|pm"
-msgstr ""
+msgstr "לפנ\"צ|אחה\"צ"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/refresh-period/refresh-period.js:64
 msgid "{{minutesCount}} min"

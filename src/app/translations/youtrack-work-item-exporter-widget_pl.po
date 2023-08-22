@@ -11,7 +11,7 @@ msgstr ""
 "X-Crowdin-File-ID: 266866\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
-"PO-Revision-Date: 2022-06-28 22:29\n"
+"PO-Revision-Date: 2023-08-22 12:20\n"
 
 #: src/app/work-items-edit-form.js:370
 msgid "Add user or group"
@@ -28,7 +28,7 @@ msgstr "Wszyscy autorzy"
 
 #: src/app/work-items-edit-form.js:53
 msgid "All types"
-msgstr ""
+msgstr "Wszystkie typy"
 
 #: src/app/work-items-edit-form.js:315
 msgid "All work types"
@@ -36,11 +36,11 @@ msgstr "Wszystkie rodzaje pracy"
 
 #: src/app/work-items-edit-form.js:287
 msgid "CSV"
-msgstr ""
+msgstr "CSV"
 
 #: src/app/work-items-widget.js:98
 msgid "Can't export data: {{error}}"
-msgstr ""
+msgstr "Nie można wyeksportować danych: {{error}}"
 
 #: node_modules/@jetbrains/hub-widget-ui/src/configuration-form/configuration-form.js:58
 msgid "Cancel"
@@ -49,7 +49,7 @@ msgstr "Anuluj"
 #: src/app/work-items-edit-form.js:54
 #: src/app/work-items-edit-form.js:65
 msgid "Clear selected"
-msgstr ""
+msgstr "Wyczyść zaznaczone"
 
 #: src/app/work-items-edit-form.js:293
 msgid "EXCEL"
